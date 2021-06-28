@@ -30,9 +30,7 @@ class HomePage extends GetView<ControlHome> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('click!');
-          controller.setA("s");
-          print(controller.a);
+          controller.onDownloadFile();
         },
         child: Icon(Icons.download),
       ),

@@ -10,6 +10,6 @@ class DataUtil {
   static Future getInstance() async {
     preferences = await SharedPreferences.getInstance();
     Directory appDocDir = await getApplicationDocumentsDirectory();
-    appDocPath = appDocDir.path;
+    appDocPath = appDocDir.path + '\\download\\';
   }
 }

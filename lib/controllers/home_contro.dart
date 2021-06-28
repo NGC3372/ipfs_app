@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:ipfs_app/utils/http.dart';
 import 'package:ipfs_app/utils/local_data.dart';
 
 class ControlHome extends GetxController {
@@ -17,5 +18,9 @@ class ControlHome extends GetxController {
     await DataUtil.getInstance();
     print(DataUtil.appDocPath);
     super.onInit();
+  }
+
+  void onDownloadFile() async {
+    await MyHttp.downloadFile(MyHttp.testUri, MyHttp.testHash);
   }
 }
