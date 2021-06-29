@@ -8,14 +8,15 @@ class MyHttp {
 
   static Future getDownloadInfo(String uri, String hash) async {
     Response response = await dio.post(uri + '/api/v0/object/stat?arg=' + hash);
-    print(response);
+    return response;
   }
 
-  static Future downloadFile(String uri, String hash) async {
-    Response response = await dio.download(
-        uri + '/api/v0/object?arg=' + hash, DataUtil.appDocPath + "\\file",
+  static Future downloadFile(String uri, String hash, int fileSize) async {
+    await dio.download(
+        uri + '/api/v0/cat?arg=' + hash, DataUtil.appDocPath + "\\file",
         onReceiveProgress: (received, total) {
-      print(received / total);
+      double progress = received / fileSize;
+      print(progress);
     });
   }
 }

@@ -9,6 +9,8 @@ import 'controllers/home_contro.dart';
 class HomePage extends GetView<ControlHome> {
   @override
   Widget build(BuildContext context) {
+    print('build');
+
     return Scaffold(
       appBar: AppBar(
         title: Obx(() => Text(controller.a.value)),
@@ -22,11 +24,13 @@ class HomePage extends GetView<ControlHome> {
           IconButton(onPressed: () {}, icon: Icon(Icons.search)),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return MyListTitle();
-        },
+      body: Obx(
+        () => ListView.builder(
+          itemCount: controller.downloadedInfo.length,
+          itemBuilder: (context, index) {
+            return MyListTitle(index);
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
