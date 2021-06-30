@@ -25,18 +25,29 @@ class MyListTitle extends StatelessWidget {
         children: [
           ListTile(
             leading: Get.find<ControlHome>().downloadedInfo[index].type,
-            title: Text('title'),
-            subtitle: Text('hash:XXXXXXX'),
-            trailing: Text('2020-04-05-17:30'),
+            title: Text(Get.find<ControlHome>().downloadedInfo[index].fileName),
+            subtitle: Text(Get.find<ControlHome>().downloadedInfo[index].hash),
+            trailing: Text(Get.find<ControlHome>().downloadedInfo[index].date),
           ),
           Padding(
               padding: EdgeInsets.only(bottom: 5.0, left: 5.0, right: 5.0),
-              child: SizedBox(
-                height: 7.0,
-                child: LinearProgressIndicator(
-                  value: 0.3,
-                ),
-              ))
+              child: Obx(() {
+                print('build');
+                return Visibility(
+                    visible: Get.find<ControlHome>()
+                        .downloadedInfo[index]
+                        .done
+                        .value,
+                    child: SizedBox(
+                      height: 7.0,
+                      child: LinearProgressIndicator(
+                        value: Get.find<ControlHome>()
+                            .downloadedInfo[index]
+                            .progress
+                            .value,
+                      ),
+                    ));
+              }))
         ],
       ),
     );

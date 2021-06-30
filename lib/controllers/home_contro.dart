@@ -41,10 +41,20 @@ class ControlHome extends GetxController {
     super.onInit();
   }
 
-  void onDownloadFile() async {
+  void onDownloadFile(int listIndex) async {
     var response =
         (await MyHttp.getDownloadInfo(MyHttp.testUri, MyHttp.testHash));
     int fileSize = response.data['CumulativeSize'];
-    await MyHttp.downloadFile(MyHttp.testUri, MyHttp.testHash, fileSize);
+    await MyHttp.downloadFile(
+        MyHttp.testUri, MyHttp.testHash, fileSize, listIndex);
+  }
+
+  void testAddInfo() {
+    downloadedInfo.add(DownloadInfo(
+        "name1", "XXXXXXX", "2021", Icon(Icons.music_note_outlined)));
+  }
+
+  void setItemProgress(int index) {
+    Get.find<ControlHome>().downloadedInfo[index].progress.value += 0.1;
   }
 }

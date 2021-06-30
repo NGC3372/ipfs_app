@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:ipfs_app/widgets/download_dialog.dart';
 
 import 'package:ipfs_app/widgets/my_ListTitle.dart';
 
@@ -21,7 +22,11 @@ class HomePage extends GetView<ControlHome> {
           icon: Icon(Icons.settings),
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(
+              onPressed: () {
+                controller.setItemProgress(0);
+              },
+              icon: Icon(Icons.search)),
         ],
       ),
       body: Obx(
@@ -34,7 +39,9 @@ class HomePage extends GetView<ControlHome> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          controller.onDownloadFile();
+          //controller.onDownloadFile(0);
+          showDialog(
+              context: context, builder: (context) => MyDownloadDialog());
         },
         child: Icon(Icons.download),
       ),

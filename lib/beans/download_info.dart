@@ -7,6 +7,7 @@ class DownloadInfo {
   String date;
   Icon type;
   var progress = 0.0.obs;
+  var done = true.obs;
 
   DownloadInfo(this.fileName, this.hash, this.date, this.type);
 }
