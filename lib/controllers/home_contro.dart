@@ -14,7 +14,6 @@ class ControlHome extends GetxController {
   }
 
   RxList<DownloadInfo> downloadedInfo = RxList<DownloadInfo>([]);
-  void download() async {}
 
   @override
   void onInit() async {
@@ -51,9 +50,8 @@ class ControlHome extends GetxController {
     }
   }
 
-  void testAddInfo() {
-    downloadedInfo.add(DownloadInfo(
-        "name1", "XXXXXXX", "2021", Icon(Icons.music_note_outlined)));
+  void addDownloadInfoToList(DownloadInfo bean) {
+    downloadedInfo.add(bean);
   }
 
   void setItemProgress(int index) {

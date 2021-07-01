@@ -43,12 +43,14 @@ class MyDownloadDialog extends StatelessWidget {
         await MyHttp.getDownloadInfo(MyHttp.testUri, MyHttp.testHash);
 
     if (response != null) {
-      print(response);
       String hash = response.data['Hash'];
-      print(hash);
       int fileSize = response.data['CumulativeSize'];
-      print(fileSize);
-      Get.offNamed('downloadInfoPage');
+      DateTime date = new DateTime.now();
+      Get.offNamed('downloadInfoPage', arguments: {
+        "hash": hash,
+        "fileSize": fileSize,
+        "date": date.toString()
+      });
     } else {
       Get.snackbar('Ops!', '没找到文件');
     }

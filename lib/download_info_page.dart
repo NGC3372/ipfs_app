@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ipfs_app/beans/download_info.dart';
 
+import 'controllers/home_contro.dart';
+
+// ignore: must_be_immutable
 class DownloadInfoPage extends StatelessWidget {
+  RxString selectValue = RxString(null);
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    RxString selectValue = RxString(null);
     return Scaffold(
       appBar: AppBar(
         title: Text('downloadInfoPage'),
@@ -20,7 +25,7 @@ class DownloadInfoPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('XXXXXXXXXXXXX'),
+                child: Text(Get.arguments['hash']),
               ),
             ],
           ),
@@ -32,7 +37,19 @@ class DownloadInfoPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('2020-02-10'),
+                child: Text(Get.arguments['date']),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text('fileSize'),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(Get.arguments['fileSize'].toString() + 'b'),
               ),
             ],
           ),
@@ -45,7 +62,9 @@ class DownloadInfoPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: SizedBox(
-                  child: TextField(),
+                  child: TextField(
+                    controller: controller,
+                  ),
                   width: 80,
                 ),
               ),
@@ -89,8 +108,40 @@ class DownloadInfoPage extends StatelessWidget {
                   )),
             ],
           ),
+          Container(
+            height: 50,
+            alignment: Alignment.center,
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: TextButton(
+                onPressed: () {},
+                child: Text('Download'),
+              ),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  void download() {
+    Icon type = Icon(Icons.file_copy);
+    switch (selectValue.value) {
+      case 'text/html':
+        type = Icon(Icons.web);
+        break;
+      case 'audio':
+        type = Icon(Icons.audiotrack);
+        break;
+      case 'video':
+        type = Icon(Icons.video_call);
+        break;
+      case 'picture':
+        type = Icon(Icons.picture_in_picture);
+        break;
+    }
+    DownloadInfo bean = DownloadInfo(
+        controller.text, Get.arguments['date'], Get.arguments['date'], type);
+    ;
   }
 }
