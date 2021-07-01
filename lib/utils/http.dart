@@ -9,10 +9,14 @@ class MyHttp {
   static String testUri = "https://www.guohao.icu";
 
   static Future getDownloadInfo(String uri, String hash) async {
-    var response = await dio.post(uri + '/api/v0/object/stat?arg=' + hash);
-    print("======");
-    print(response.statusMessage);
-    return response;
+    try {
+      var response = await dio.post(uri + '/api/v0/object/stat?arg=' + hash);
+
+      return response;
+    } on DioError catch (e) {
+      print(e.response);
+      return null;
+    }
   }
 
   static Future downloadFile(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/controllers/home_contro.dart';
+import 'package:ipfs_app/download_info_page.dart';
 import 'package:ipfs_app/page_two.dart';
 
 import 'home_page.dart';
@@ -17,7 +18,8 @@ void main() {
       GetPage(
         name: "settingsPage",
         page: () => SettingsPage(),
-      )
+      ),
+      GetPage(name: "downloadInfoPage", page: () => DownloadInfoPage())
     ],
   ));
 }

@@ -40,8 +40,9 @@ class HomePage extends GetView<ControlHome> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //controller.onDownloadFile(0);
-          showDialog(
-              context: context, builder: (context) => MyDownloadDialog());
+          Get.dialog(MyDownloadDialog());
+          // showDialog(
+          // context: context, builder: (context) => MyDownloadDialog());
         },
         child: Icon(Icons.download),
       ),

@@ -24,7 +24,6 @@ class MyDownloadDialog extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                //Get.off(page);
                 searchFile();
               },
               child: Text('检索'),
@@ -40,8 +39,18 @@ class MyDownloadDialog extends StatelessWidget {
   }
 
   Future searchFile() async {
-    Response response =
+    var response =
         await MyHttp.getDownloadInfo(MyHttp.testUri, MyHttp.testHash);
-    print(response.isOk);
+
+    if (response != null) {
+      print(response);
+      String hash = response.data['Hash'];
+      print(hash);
+      int fileSize = response.data['CumulativeSize'];
+      print(fileSize);
+      Get.offNamed('downloadInfoPage');
+    } else {
+      Get.snackbar('Ops!', '没找到文件');
+    }
   }
 }

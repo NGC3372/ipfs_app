@@ -42,11 +42,13 @@ class ControlHome extends GetxController {
   }
 
   void onDownloadFile(int listIndex) async {
-    var response =
+    var reslut =
         (await MyHttp.getDownloadInfo(MyHttp.testUri, MyHttp.testHash));
-    int fileSize = response.data['CumulativeSize'];
-    await MyHttp.downloadFile(
-        MyHttp.testUri, MyHttp.testHash, fileSize, listIndex);
+    if (reslut != null) {
+      int fileSize = reslut['CumulativeSize'];
+      await MyHttp.downloadFile(
+          MyHttp.testUri, MyHttp.testHash, fileSize, listIndex);
+    }
   }
 
   void testAddInfo() {
