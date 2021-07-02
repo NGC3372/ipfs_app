@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,18 +42,20 @@ class ControlHome extends GetxController {
     super.onInit();
   }
 
-  void onDownloadFile(int listIndex) async {
-    var reslut =
-        (await MyHttp.getDownloadInfo(MyHttp.testUri, MyHttp.testHash));
-    if (reslut != null) {
-      int fileSize = reslut['CumulativeSize'];
-      await MyHttp.downloadFile(
-          MyHttp.testUri, MyHttp.testHash, fileSize, listIndex);
+  void readDownloadList() async {
+    String path = DataUtil.appDocPath + '\\downloadList';
+    File file = File(path);
+    String result = await file.readAsString();
+    if (result == null) {
+      result = [].toString();
     }
   }
 
-  void addDownloadInfoToList(DownloadInfo bean) {
+  void onDownloadFile(int fileSize, DownloadInfo bean) async {
     downloadedInfo.add(bean);
+    await MyHttp.downloadFile(
+        MyHttp.testUri, MyHttp.testHash, fileSize, downloadedInfo.length - 1);
+    DataUtil.preferences.setStringList("downloadList", []);
   }
 
   void setItemProgress(int index) {

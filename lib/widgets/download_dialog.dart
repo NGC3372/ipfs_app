@@ -7,7 +7,7 @@ import 'package:ipfs_app/utils/http.dart';
 // ignore: must_be_immutable
 class MyDownloadDialog extends StatelessWidget {
   final TextEditingController hashControler = TextEditingController();
-  var searching = false.obs;
+  var searched = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +20,27 @@ class MyDownloadDialog extends StatelessWidget {
             TextField(
               autofocus: true,
               enabled: true,
+              decoration: InputDecoration(
+                border: null,
+                hintText: '输入文件hash',
+              ),
               controller: hashControler,
             ),
             TextButton(
               onPressed: () {
-                searchFile();
+                searchFile(hashControler.text);
               },
               child: Text('检索'),
             ),
-            Visibility(
-              child: CircularProgressIndicator(),
-              visible: false,
+            SizedBox(
+              height: 15,
+              child: Obx(() => Offstage(
+                    child: Text(
+                      '未查询到文件',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    offstage: searched.value,
+                  )),
             )
           ],
         ),
@@ -38,9 +48,9 @@ class MyDownloadDialog extends StatelessWidget {
     );
   }
 
-  Future searchFile() async {
-    var response =
-        await MyHttp.getDownloadInfo(MyHttp.testUri, MyHttp.testHash);
+  Future searchFile(String hash) async {
+    searched.value = true;
+    var response = await MyHttp.getDownloadInfo(MyHttp.testUri, hash);
 
     if (response != null) {
       String hash = response.data['Hash'];
@@ -49,10 +59,10 @@ class MyDownloadDialog extends StatelessWidget {
       Get.offNamed('downloadInfoPage', arguments: {
         "hash": hash,
         "fileSize": fileSize,
-        "date": date.toString()
+        "date": date.toString().split('.')[0]
       });
     } else {
-      Get.snackbar('Ops!', '没找到文件');
+      searched.value = false;
     }
   }
 }

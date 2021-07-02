@@ -33,7 +33,7 @@ class HomePage extends GetView<ControlHome> {
         () => ListView.builder(
           itemCount: controller.downloadedInfo.length,
           itemBuilder: (context, index) {
-            return MyListTitle(index);
+            return MyListTitle(controller.downloadedInfo.length - 1 - index);
           },
         ),
       ),

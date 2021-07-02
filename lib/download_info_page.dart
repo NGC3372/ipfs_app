@@ -9,6 +9,10 @@ import 'controllers/home_contro.dart';
 class DownloadInfoPage extends StatelessWidget {
   RxString selectValue = RxString(null);
   TextEditingController controller = TextEditingController();
+  Map args = Get.arguments;
+  RxBool filenameContent = RxBool(false);
+  RxBool fileTypeContent = RxBool(false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +29,7 @@ class DownloadInfoPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text(Get.arguments['hash']),
+                child: Text(args['hash']),
               ),
             ],
           ),
@@ -37,7 +41,7 @@ class DownloadInfoPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text(Get.arguments['date']),
+                child: Text(args['date']),
               ),
             ],
           ),
@@ -49,7 +53,7 @@ class DownloadInfoPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text(Get.arguments['fileSize'].toString() + 'b'),
+                child: Text(args['fileSize'].toString() + 'b'),
               ),
             ],
           ),
@@ -68,6 +72,18 @@ class DownloadInfoPage extends StatelessWidget {
                   width: 80,
                 ),
               ),
+              Obx(
+                () => Visibility(
+                  visible: filenameContent.value,
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      '该项不能为空',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
           Row(
@@ -106,6 +122,18 @@ class DownloadInfoPage extends StatelessWidget {
                       },
                     ),
                   )),
+              Obx(
+                () => Visibility(
+                  visible: fileTypeContent.value,
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      '该项不能为空',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
           Container(
@@ -114,7 +142,9 @@ class DownloadInfoPage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(10),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  download();
+                },
                 child: Text('Download'),
               ),
             ),
@@ -125,23 +155,32 @@ class DownloadInfoPage extends StatelessWidget {
   }
 
   void download() {
-    Icon type = Icon(Icons.file_copy);
-    switch (selectValue.value) {
-      case 'text/html':
-        type = Icon(Icons.web);
-        break;
-      case 'audio':
-        type = Icon(Icons.audiotrack);
-        break;
-      case 'video':
-        type = Icon(Icons.video_call);
-        break;
-      case 'picture':
-        type = Icon(Icons.picture_in_picture);
-        break;
+    fileTypeContent.value = false;
+    filenameContent.value = false;
+    if (selectValue.value == null) fileTypeContent.value = true;
+    if (controller.text == '') filenameContent.value = true;
+    if (selectValue.value != null &&
+        controller.text != null &&
+        controller.text != '') {
+      Icon type = Icon(Icons.file_copy);
+      switch (selectValue.value) {
+        case 'text/html':
+          type = Icon(Icons.web);
+          break;
+        case 'audio':
+          type = Icon(Icons.audiotrack);
+          break;
+        case 'video':
+          type = Icon(Icons.video_call);
+          break;
+        case 'picture':
+          type = Icon(Icons.picture_in_picture);
+          break;
+      }
+      DownloadInfo bean =
+          DownloadInfo(controller.text, args['hash'], args['date'], type);
+      Get.find<ControlHome>().onDownloadFile(args['fileSize'], bean);
+      Get.back();
     }
-    DownloadInfo bean = DownloadInfo(
-        controller.text, Get.arguments['date'], Get.arguments['date'], type);
-    ;
   }
 }
