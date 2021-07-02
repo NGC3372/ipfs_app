@@ -19,10 +19,10 @@ class MyHttp {
     }
   }
 
-  static Future downloadFile(
-      String uri, String hash, int fileSize, int listIndex) async {
-    await dio.download(
-        uri + '/api/v0/cat?arg=' + hash, DataUtil.appDocPath + "\\file",
+  static Future downloadFile(String uri, String hash, int fileSize,
+      int listIndex, String fileName) async {
+    await dio.download(uri + '/api/v0/cat?arg=' + hash,
+        DataUtil.appDocPath + "\\$hash$fileName",
         onReceiveProgress: (received, total) {
       Get.find<ControlHome>().downloadedInfo[listIndex].progress.value =
           double.tryParse((received / fileSize).toStringAsFixed(2));

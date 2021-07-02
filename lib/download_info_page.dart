@@ -162,23 +162,8 @@ class DownloadInfoPage extends StatelessWidget {
     if (selectValue.value != null &&
         controller.text != null &&
         controller.text != '') {
-      Icon type = Icon(Icons.file_copy);
-      switch (selectValue.value) {
-        case 'text/html':
-          type = Icon(Icons.web);
-          break;
-        case 'audio':
-          type = Icon(Icons.audiotrack);
-          break;
-        case 'video':
-          type = Icon(Icons.video_call);
-          break;
-        case 'picture':
-          type = Icon(Icons.picture_in_picture);
-          break;
-      }
-      DownloadInfo bean =
-          DownloadInfo(controller.text, args['hash'], args['date'], type);
+      DownloadInfo bean = DownloadInfo(
+          controller.text, args['hash'], args['date'], selectValue.value);
       Get.find<ControlHome>().onDownloadFile(args['fileSize'], bean);
       Get.back();
     }

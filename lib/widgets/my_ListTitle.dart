@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/controllers/home_contro.dart';
+import 'package:ipfs_app/utils/local_data.dart';
 
 class MyListTitle extends StatelessWidget {
   final int index;
@@ -24,7 +25,8 @@ class MyListTitle extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ListTile(
-            leading: Get.find<ControlHome>().downloadedInfo[index].type,
+            leading: DataUtil.setFileType(
+                Get.find<ControlHome>().downloadedInfo[index].type),
             title: Text(Get.find<ControlHome>().downloadedInfo[index].fileName),
             subtitle: Text(Get.find<ControlHome>().downloadedInfo[index].hash),
             trailing: Text(Get.find<ControlHome>().downloadedInfo[index].date),

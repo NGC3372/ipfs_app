@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -19,46 +20,46 @@ class ControlHome extends GetxController {
 
   @override
   void onInit() async {
-    print('initcontro');
     await DataUtil.getInstance();
-    print(DataUtil.appDocPath);
+    readDownloadList();
     List<DownloadInfo> temp = [];
-    temp.add(DownloadInfo(
-        "name1", "XXXXXXX", "2021", Icon(Icons.music_note_outlined)));
-    temp.add(DownloadInfo(
-        "name2", "XXXXXXX", "2021", Icon(Icons.music_note_outlined)));
-    temp.add(DownloadInfo(
-        "name3", "XXXXXXX", "2021", Icon(Icons.music_note_outlined)));
-    temp.add(DownloadInfo(
-        "name4", "XXXXXXX", "2021", Icon(Icons.music_note_outlined)));
-    temp.add(DownloadInfo(
-        "name5", "XXXXXXX", "2021", Icon(Icons.music_note_outlined)));
-    temp.add(DownloadInfo(
-        "name6", "XXXXXXX", "2021", Icon(Icons.music_note_outlined)));
-    print('oninti');
-
+    for (Map tempItem in await readDownloadList()) {
+      DownloadInfo tempBean = DownloadInfo(tempItem['fileName'],
+          tempItem['hash'], tempItem['date'], tempItem['type']);
+      tempBean.done.value = true;
+      temp.add(tempBean);
+    }
     downloadedInfo.addAll(temp);
-    print(downloadedInfo.length);
     super.onInit();
   }
 
-  void readDownloadList() async {
-    String path = DataUtil.appDocPath + '\\downloadList';
+  Future<List> readDownloadList() async {
+    String path = DataUtil.appDocPath + '\downloadList.json';
     File file = File(path);
-    String result = await file.readAsString();
-    if (result == null) {
-      result = [].toString();
+    if (!await file.exists()) {
+      await file.create();
+      await file.writeAsString(jsonEncode([]));
     }
+    List result = jsonDecode(await file.readAsString());
+
+    return result;
   }
 
+  void writeDownloadList() {
+    String path = DataUtil.appDocPath + '\downloadList.json';
+    File file = File(path);
+    List downloadList = [];
+    for (DownloadInfo tempBean in downloadedInfo) {
+      downloadList.add(tempBean.toMap());
+    }
+    file.writeAsString(jsonEncode(downloadList));
+  }
+
+//下载文件
   void onDownloadFile(int fileSize, DownloadInfo bean) async {
     downloadedInfo.add(bean);
-    await MyHttp.downloadFile(
-        MyHttp.testUri, MyHttp.testHash, fileSize, downloadedInfo.length - 1);
-    DataUtil.preferences.setStringList("downloadList", []);
-  }
-
-  void setItemProgress(int index) {
-    Get.find<ControlHome>().downloadedInfo[index].progress.value += 0.1;
+    await MyHttp.downloadFile(MyHttp.testUri, MyHttp.testHash, fileSize,
+        downloadedInfo.length - 1, bean.fileName);
+    writeDownloadList();
   }
 }

@@ -22,11 +22,7 @@ class HomePage extends GetView<ControlHome> {
           icon: Icon(Icons.settings),
         ),
         actions: [
-          IconButton(
-              onPressed: () {
-                controller.setItemProgress(0);
-              },
-              icon: Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
         ],
       ),
       body: Obx(
