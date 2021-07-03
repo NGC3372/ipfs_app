@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:ipfs_app/controllers/download_dialog_controller.dart';
 import 'package:ipfs_app/utils/http.dart';
 
 // ignore: must_be_immutable

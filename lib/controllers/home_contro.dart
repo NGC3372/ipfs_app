@@ -1,8 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ipfs_app/beans/download_info.dart';
@@ -34,19 +31,28 @@ class ControlHome extends GetxController {
   }
 
   Future<List> readDownloadList() async {
-    String path = DataUtil.appDocPath + '\downloadList.json';
+    String path = DataUtil.downloadListPath + '/downloadList.json';
     File file = File(path);
     if (!await file.exists()) {
       await file.create();
       await file.writeAsString(jsonEncode([]));
     }
+    var downloadDirectory = Directory(DataUtil.appDocPath);
+    try {
+      bool exists = await file.exists();
+      if (!exists) {
+        await downloadDirectory.create();
+      }
+    } catch (e) {
+      print(e);
+    }
     List result = jsonDecode(await file.readAsString());
-
+    print(result);
     return result;
   }
 
   void writeDownloadList() {
-    String path = DataUtil.appDocPath + '\downloadList.json';
+    String path = DataUtil.downloadListPath + '/downloadList.json';
     File file = File(path);
     List downloadList = [];
     for (DownloadInfo tempBean in downloadedInfo) {

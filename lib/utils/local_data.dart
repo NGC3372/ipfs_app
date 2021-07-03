@@ -8,11 +8,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class DataUtil {
   static SharedPreferences preferences;
   static String appDocPath;
+  static String downloadListPath;
 
   static Future getInstance() async {
     preferences = await SharedPreferences.getInstance();
     Directory appDocDir = await getApplicationDocumentsDirectory();
-    appDocPath = appDocDir.path + '\\download\\';
+    appDocPath = appDocDir.path + '/download/';
+    downloadListPath = appDocDir.path;
   }
 
   static Icon setFileType(String typeStr) {

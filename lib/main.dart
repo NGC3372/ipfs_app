@@ -4,6 +4,7 @@ import 'package:ipfs_app/controllers/home_contro.dart';
 import 'package:ipfs_app/download_info_page.dart';
 import 'package:ipfs_app/page_two.dart';
 import 'package:ipfs_app/picture_page.dart';
+import 'package:ipfs_app/text_page.dart';
 
 import 'home_page.dart';
 
@@ -21,7 +22,8 @@ void main() {
         page: () => SettingsPage(),
       ),
       GetPage(name: "downloadInfoPage", page: () => DownloadInfoPage()),
-      GetPage(name: 'picturePage', page: () => PicturePage())
+      GetPage(name: 'picturePage', page: () => PicturePage()),
+      GetPage(name: 'textPage', page: () => TextPage())
     ],
   ));
 }
