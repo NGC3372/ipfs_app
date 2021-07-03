@@ -58,7 +58,7 @@ class ControlHome extends GetxController {
 //下载文件
   void onDownloadFile(int fileSize, DownloadInfo bean) async {
     downloadedInfo.add(bean);
-    await MyHttp.downloadFile(MyHttp.testUri, MyHttp.testHash, fileSize,
+    await MyHttp.downloadFile(MyHttp.testUri, bean.hash, fileSize,
         downloadedInfo.length - 1, bean.fileName);
     writeDownloadList();
   }
