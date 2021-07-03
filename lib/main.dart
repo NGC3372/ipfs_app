@@ -5,6 +5,7 @@ import 'package:ipfs_app/download_info_page.dart';
 import 'package:ipfs_app/page_two.dart';
 import 'package:ipfs_app/picture_page.dart';
 import 'package:ipfs_app/text_page.dart';
+import 'package:ipfs_app/video_page.dart';
 
 import 'home_page.dart';
 
@@ -23,7 +24,8 @@ void main() {
       ),
       GetPage(name: "downloadInfoPage", page: () => DownloadInfoPage()),
       GetPage(name: 'picturePage', page: () => PicturePage()),
-      GetPage(name: 'textPage', page: () => TextPage())
+      GetPage(name: 'textPage', page: () => TextPage()),
+      GetPage(name: 'videoPage', page: () => VideoPage()),
     ],
   ));
 }

@@ -69,6 +69,7 @@ class MyListTitle extends StatelessWidget {
           case 'audio':
             break;
           case 'video':
+            Get.toNamed('videoPage', arguments: {'path': filePath});
             break;
           case 'picture':
             Get.toNamed('picturePage', arguments: {'path': filePath});

@@ -25,9 +25,10 @@ dependencies:
     sdk: flutter
   shared_preferences: ^2.0.6 #本地数据存储
   dio: ^4.0.0  #网络请求
-  webview_flutter: ^2.0.9
+  webview_flutter: ^2.0.9 #加载本地网页
   get: ^4.1.4 #开发框架
   path_provider: ^2.0.2 #本读数据存储
+  video_player: ^2.1.6 #加载视频
   
 
   # The following adds the Cupertino Icons font to your application.
