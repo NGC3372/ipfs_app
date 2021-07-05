@@ -31,6 +31,7 @@ dependencies:
   video_player: ^2.1.6 #加载视频
   just_audio: ^0.8.0 #加载音频https://pub.dev/packages/better_player
   audio_video_progress_bar: ^0.4.0
+  chewie: ^1.2.2
   
 
   # The following adds the Cupertino Icons font to your application.

@@ -12,6 +12,8 @@ class AudioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future init = initAudio();
+    var labelLocation = TimeLabelLocation.below;
+    var labelType = TimeLabelType.totalTime;
     return Scaffold(
       appBar: AppBar(
         title: Text('audioPage'),
@@ -24,9 +26,11 @@ class AudioPage extends StatelessWidget {
                 print(player.position);
                 print(player.duration);
                 return ProgressBar(
-                  progress: player.position,
-                  buffered: player.bufferedPosition,
+                  progress: Duration.zero,
+                  buffered: Duration.zero,
                   total: player.duration,
+                  timeLabelLocation: labelLocation,
+                  timeLabelType: labelType,
                   onSeek: (duration) {
                     player.seek(duration);
                   },
