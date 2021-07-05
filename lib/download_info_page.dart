@@ -27,10 +27,14 @@ class DownloadInfoPage extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 child: Text('hash'),
               ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(args['hash']),
-              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    args['hash'],
+                  ),
+                ),
+              )
             ],
           ),
           Row(
