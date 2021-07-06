@@ -1,8 +1,4 @@
-import 'dart:convert';
-
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:ipfs_app/utils/local_data.dart';
 
 class DownloadInfo {
   String fileName;
