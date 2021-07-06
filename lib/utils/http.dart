@@ -5,10 +5,9 @@ import 'package:ipfs_app/utils/local_data.dart';
 
 class MyHttp {
   static Dio dio = Dio();
-  static String testHash = "QmYgCkNQcu8NCTZAKo9ZeKpHGm8cpuQQvtHTRZedPD5Thw";
-  static String testUri = "https://www.guohao.icu";
 
-  static Future getDownloadInfo(String uri, String hash) async {
+  static Future getDownloadInfo(String hash) async {
+    String uri = DataUtil.preferences.getString("RequestURI");
     try {
       var response = await dio.post(uri + '/api/v0/object/stat?arg=' + hash);
       return response;
@@ -19,8 +18,9 @@ class MyHttp {
     }
   }
 
-  static Future downloadFile(String uri, String hash, int fileSize,
-      int listIndex, String fileName) async {
+  static Future downloadFile(
+      String hash, int fileSize, int listIndex, String fileName) async {
+    String uri = DataUtil.preferences.getString("RequestURI");
     await dio.download(uri + '/api/v0/cat?arg=' + hash,
         DataUtil.appDocPath + "/$hash$fileName",
         onReceiveProgress: (received, total) {

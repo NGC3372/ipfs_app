@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ipfs_app/utils/local_data.dart';
 
 // ignore: must_be_immutable
 class SettingsPage extends StatelessWidget {
-  RxBool select = RxBool(false);
+  RxBool select = RxBool(DataUtil.preferences.getBool('AppDarkMode'));
+  RxString uri = RxString(DataUtil.preferences.getString('RequestURI'));
+
   @override
   Widget build(BuildContext context) {
+    print(uri.value);
     return Scaffold(
         appBar: AppBar(
           title: Text('settingsPage'),
@@ -15,7 +19,7 @@ class SettingsPage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.explore),
               title: Text('URI'),
-              subtitle: Text('wwwww.gaga.com'),
+              subtitle: Obx(() => Text(uri.value)),
               onTap: () {
                 setUriDialog();
               },
@@ -33,6 +37,7 @@ class SettingsPage extends StatelessWidget {
                     value: select.value,
                     onChanged: (value) {
                       select.value = !select.value;
+                      DataUtil.preferences.setBool("AppDarkMode", select.value);
                     },
                   )),
             ),
@@ -50,11 +55,11 @@ class SettingsPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: GestureDetector(
               child: Text(
-                'www.sdfasdf.com',
+                "默认: https://www.guohao.icu",
                 style: TextStyle(color: Colors.grey),
               ),
               onTap: () {
-                controller.text = 'www.sdfasdf.com';
+                controller.text = 'https://www.guohao.icu';
               },
             )),
         Padding(
@@ -64,7 +69,13 @@ class SettingsPage extends StatelessWidget {
             controller: controller,
           ),
         ),
-        TextButton(onPressed: () {}, child: Text('OK'))
+        TextButton(
+            onPressed: () {
+              DataUtil.preferences.setString("RequestURI", controller.text);
+              uri.value = controller.text;
+              Get.back();
+            },
+            child: Text('OK'))
       ],
     ));
   }

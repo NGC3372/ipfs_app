@@ -14,7 +14,7 @@ class ControlHome extends GetxController {
   @override
   void onInit() async {
     await DataUtil.getInstance();
-    readDownloadList();
+    DataUtil.initAppSetting();
     List<DownloadInfo> temp = [];
     for (Map tempItem in await readDownloadList()) {
       DownloadInfo tempBean = DownloadInfo(tempItem['fileName'],
@@ -57,11 +57,10 @@ class ControlHome extends GetxController {
     file.writeAsString(jsonEncode(downloadList));
   }
 
-//下载文件
   void onDownloadFile(int fileSize, DownloadInfo bean) async {
     downloadedInfo.add(bean);
-    await MyHttp.downloadFile(MyHttp.testUri, bean.hash, fileSize,
-        downloadedInfo.length - 1, bean.fileName);
+    await MyHttp.downloadFile(
+        bean.hash, fileSize, downloadedInfo.length - 1, bean.fileName);
     writeDownloadList();
   }
 }

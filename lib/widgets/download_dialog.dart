@@ -49,7 +49,7 @@ class MyDownloadDialog extends StatelessWidget {
 
   Future searchFile(String hash) async {
     searched.value = true;
-    var response = await MyHttp.getDownloadInfo(MyHttp.testUri, hash);
+    var response = await MyHttp.getDownloadInfo(hash);
 
     if (response != null) {
       String hash = response.data['Hash'];

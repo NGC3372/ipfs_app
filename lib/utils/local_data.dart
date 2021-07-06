@@ -35,4 +35,19 @@ class DataUtil {
     }
     return type;
   }
+
+  static void initAppSetting() {
+    String requestURI = DataUtil.preferences.getString("RequestURI");
+    if (requestURI == null) {
+      DataUtil.preferences.setString('RequestURI', 'https://www.guohao.icu');
+    }
+    String language = DataUtil.preferences.getString("AppLanguage");
+    if (language == null) {
+      DataUtil.preferences.setString("AppLanguage", 'ZH');
+    }
+    bool darkMode = DataUtil.preferences.getBool('AppDarkMode');
+    if (darkMode == null) {
+      DataUtil.preferences.setBool("AppDarkMode", false);
+    }
+  }
 }
