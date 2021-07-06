@@ -9,10 +9,6 @@ import 'package:ipfs_app/utils/local_data.dart';
 class ControlHome extends GetxController {
   var a = "hello9".obs;
 
-  void setA(String s) {
-    a.value = s;
-  }
-
   RxList<DownloadInfo> downloadedInfo = RxList<DownloadInfo>([]);
 
   @override

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/controllers/home_contro.dart';
 import 'package:ipfs_app/download_info_page.dart';
-import 'package:ipfs_app/page_two.dart';
+import 'package:ipfs_app/settings_page.dart';
 import 'package:ipfs_app/picture_page.dart';
 import 'package:ipfs_app/search_page.dart';
 import 'package:ipfs_app/text_page.dart';
