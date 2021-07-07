@@ -6,6 +6,7 @@ import 'package:ipfs_app/settings_page.dart';
 import 'package:ipfs_app/picture_page.dart';
 import 'package:ipfs_app/search_page.dart';
 import 'package:ipfs_app/text_page.dart';
+import 'package:ipfs_app/utils/language.dart';
 import 'package:ipfs_app/video_page.dart';
 
 import 'audio_page.dart';
@@ -13,6 +14,8 @@ import 'home_page.dart';
 
 void main() {
   runApp(GetMaterialApp(
+    translations: MyLanguage(),
+    locale: Locale('zh', 'CN'),
     initialRoute: 'home',
     getPages: [
       GetPage(

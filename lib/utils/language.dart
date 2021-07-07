@@ -1,0 +1,65 @@
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+
+class MyLanguage extends Translations {
+  @override
+  // TODO: implement keys
+  Map<String, Map<String, String>> get keys => {
+        'zh_CN': {
+          'home_title': '下载列表',
+          'downloadDialog_Title': '检索文件',
+          'downloadDialog_Hint': '输入文件hash',
+          'downloadDialog_Button': '检索',
+          'downloadDialog_failure': '未查询到文件',
+          'settingPage_title': "设置",
+          'settingPage_requestURI': "请求地址",
+          'settingPage_language': "语言",
+          'settingPage_darkMode': "夜间主题",
+          'settingPage_URIDialog_content': "默认：https://wwww.guohao.icu",
+          'settingPage_URIDialog_OK': "确认",
+          'settingPage_LanguageDialog_Title': "设置语言",
+          'settingPage_LanguageDialog_Chinese': "简体中文",
+          'settingPage_LanguageDialog_English': "英语",
+          'downloadInfoPage_title': "下载项信息",
+          'downloadInfoPage_date': "日期",
+          'downloadInfoPage_fileSize': "文件大小",
+          'downloadInfoPage_fileName': "文件名称",
+          'downloadInfoPage_fileType': "文件类型",
+          'downloadInfoPage_fileType_hint': "选择类型",
+          'downloadInfoPage_fileType_text/html': "文本、网页",
+          'downloadInfoPage_fileType_audio': "音频",
+          'downloadInfoPage_fileType_video': "视频",
+          'downloadInfoPage_fileType_picture': "图片",
+          'downloadInfoPage_Button': "下载",
+          'downloadInfoPage_ContentNull': "该项内容不能为空",
+        },
+        'en_US': {
+          'home_title': 'Download List',
+          'downloadDialog_Title': 'Search File',
+          'downloadDialog_Hint': 'please input the hash',
+          'downloadDialog_Button': 'search',
+          'downloadDialog_failure': 'ops! searching is failure',
+          'settingPage_title': "Settings",
+          'settingPage_requestURI': "Request Address",
+          'settingPage_language': "Language",
+          'settingPage_darkMode': "DarkMode",
+          'settingPage_URIDialog_content': "default: https://wwww.guohao.icu",
+          'settingPage_URIDialog_OK': "OK",
+          'settingPage_LanguageDialog_Title': "Language Setting",
+          'settingPage_LanguageDialog_Chinese': "Chinese",
+          'settingPage_LanguageDialog_English': "English",
+          'downloadInfoPage_title': "DownLoad Item Info",
+          'downloadInfoPage_date': "Date",
+          'downloadInfoPage_fileSize': "File Size",
+          'downloadInfoPage_fileName': "File Name",
+          'downloadInfoPage_fileType': "File Type",
+          'downloadInfoPage_fileType_hint': "Select One",
+          'downloadInfoPage_fileType_text/html': "text/html",
+          'downloadInfoPage_fileType_audio': "audio",
+          'downloadInfoPage_fileType_video': "video",
+          'downloadInfoPage_fileType_picture': "picture",
+          'downloadInfoPage_Button': "Download",
+          'downloadInfoPage_ContentNull': "This content cannot be empty",
+        }
+      };
+}

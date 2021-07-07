@@ -17,7 +17,7 @@ class DownloadInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('downloadInfoPage'),
+        title: Text('downloadInfoPage_title'.tr),
       ),
       body: Column(
         children: [
@@ -25,7 +25,7 @@ class DownloadInfoPage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('hash'),
+                child: Text('downloadInfoPage_date'.tr),
               ),
               Expanded(
                 child: Padding(
@@ -53,7 +53,7 @@ class DownloadInfoPage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('fileSize'),
+                child: Text('downloadInfoPage_fileSize'.tr),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
@@ -65,7 +65,7 @@ class DownloadInfoPage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('fileName'),
+                child: Text('downloadInfoPage_fileName'.tr),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
@@ -82,7 +82,7 @@ class DownloadInfoPage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      '该项不能为空',
+                      'downloadInfoPage_ContentNull'.tr,
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
@@ -94,29 +94,29 @@ class DownloadInfoPage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('type'),
+                child: Text('downloadInfoPage_fileType'.tr),
               ),
               Padding(
                   padding: EdgeInsets.all(10),
                   child: Obx(
                     () => DropdownButton(
-                      hint: Text('choose one'),
+                      hint: Text('downloadInfoPage_fileType_hint'.tr),
                       value: selectValue.value,
                       items: [
                         DropdownMenuItem(
-                          child: Text('text/html'),
+                          child: Text('downloadInfoPage_fileType_text/html'.tr),
                           value: 'text/html',
                         ),
                         DropdownMenuItem(
-                          child: Text('audio'),
+                          child: Text('downloadInfoPage_fileType_audio'.tr),
                           value: 'audio',
                         ),
                         DropdownMenuItem(
-                          child: Text('video'),
+                          child: Text('downloadInfoPage_fileType_video'.tr),
                           value: 'video',
                         ),
                         DropdownMenuItem(
-                          child: Text('picture'),
+                          child: Text('downloadInfoPage_fileType_picture'.tr),
                           value: 'picture',
                         ),
                       ],
@@ -132,7 +132,7 @@ class DownloadInfoPage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      '该项不能为空',
+                      'downloadInfoPage_ContentNull'.tr,
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
@@ -149,7 +149,7 @@ class DownloadInfoPage extends StatelessWidget {
                 onPressed: () {
                   download();
                 },
-                child: Text('Download'),
+                child: Text('downloadInfoPage_Button'.tr),
               ),
             ),
           ),

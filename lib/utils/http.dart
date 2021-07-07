@@ -7,9 +7,12 @@ class MyHttp {
   static Dio dio = Dio();
 
   static Future getDownloadInfo(String hash) async {
-    String uri = DataUtil.preferences.getString("RequestURI");
+    String uri = DataUtil.preferences.getString("RequestURI") +
+        '/api/v0/object/stat?arg=' +
+        hash;
+    print(uri);
     try {
-      var response = await dio.post(uri + '/api/v0/object/stat?arg=' + hash);
+      var response = await dio.post(uri);
       return response;
     } on DioError catch (e) {
       print('erro!!!!!!!');
@@ -20,9 +23,11 @@ class MyHttp {
 
   static Future downloadFile(
       String hash, int fileSize, int listIndex, String fileName) async {
-    String uri = DataUtil.preferences.getString("RequestURI");
-    await dio.download(uri + '/api/v0/cat?arg=' + hash,
-        DataUtil.appDocPath + "/$hash$fileName",
+    String uri = DataUtil.preferences.getString("RequestURI") +
+        '/api/v0/cat?arg=' +
+        hash;
+    print(uri);
+    await dio.download(uri, DataUtil.appDocPath + "/$hash$fileName",
         onReceiveProgress: (received, total) {
       Get.find<ControlHome>().downloadedInfo[listIndex].progress.value =
           double.tryParse((received / fileSize).toStringAsFixed(2));

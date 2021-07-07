@@ -10,11 +10,9 @@ import 'controllers/home_contro.dart';
 class HomePage extends GetView<ControlHome> {
   @override
   Widget build(BuildContext context) {
-    print('build');
-
     return Scaffold(
       appBar: AppBar(
-        title: Obx(() => Text(controller.a.value)),
+        title: Text("home_title".tr),
         leading: IconButton(
           onPressed: () {
             Get.toNamed("settingsPage");

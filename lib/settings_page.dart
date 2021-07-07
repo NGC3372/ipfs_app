@@ -12,13 +12,13 @@ class SettingsPage extends StatelessWidget {
     print(uri.value);
     return Scaffold(
         appBar: AppBar(
-          title: Text('settingsPage'),
+          title: Text('settingPage_title'.tr),
         ),
         body: Column(
           children: [
             ListTile(
               leading: Icon(Icons.explore),
-              title: Text('URI'),
+              title: Text('settingPage_requestURI'.tr),
               subtitle: Obx(() => Text(uri.value)),
               onTap: () {
                 setUriDialog();
@@ -27,12 +27,15 @@ class SettingsPage extends StatelessWidget {
             Divider(),
             ListTile(
               leading: Icon(Icons.language),
-              title: Text('Language'),
+              title: Text('settingPage_language'.tr),
+              onTap: () {
+                setLanguageDialog();
+              },
             ),
             Divider(),
             ListTile(
               leading: Icon(Icons.dark_mode),
-              title: Text('DarkMode'),
+              title: Text('settingPage_darkMode'.tr),
               trailing: Obx(() => Switch(
                     value: select.value,
                     onChanged: (value) {
@@ -55,7 +58,7 @@ class SettingsPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: GestureDetector(
               child: Text(
-                "默认: https://www.guohao.icu",
+                "settingPage_URIDialog_content".tr,
                 style: TextStyle(color: Colors.grey),
               ),
               onTap: () {
@@ -75,7 +78,31 @@ class SettingsPage extends StatelessWidget {
               uri.value = controller.text;
               Get.back();
             },
-            child: Text('OK'))
+            child: Text('settingPage_URIDialog_OK'.tr))
+      ],
+    ));
+  }
+
+  void setLanguageDialog() {
+    Get.dialog(SimpleDialog(
+      title: Text('settingPage_LanguageDialog_Title'.tr),
+      children: [
+        SimpleDialogOption(
+          child: Text("settingPage_LanguageDialog_Chinese".tr),
+          onPressed: () {
+            var locale = Locale('zh', 'CN');
+            Get.updateLocale(locale);
+            Get.back();
+          },
+        ),
+        SimpleDialogOption(
+          child: Text("settingPage_LanguageDialog_English".tr),
+          onPressed: () {
+            var locale = Locale('en', 'US');
+            Get.updateLocale(locale);
+            Get.back();
+          },
+        )
       ],
     ));
   }

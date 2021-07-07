@@ -11,7 +11,7 @@ class MyDownloadDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
-      title: Text('检索文件'),
+      title: Text('downloadDialog_Title'.tr),
       children: [
         Column(
           mainAxisSize: MainAxisSize.min,
@@ -21,7 +21,7 @@ class MyDownloadDialog extends StatelessWidget {
               enabled: true,
               decoration: InputDecoration(
                 border: null,
-                hintText: '输入文件hash',
+                hintText: 'downloadDialog_Hint'.tr,
               ),
               controller: hashControler,
             ),
@@ -29,13 +29,13 @@ class MyDownloadDialog extends StatelessWidget {
               onPressed: () {
                 searchFile(hashControler.text);
               },
-              child: Text('检索'),
+              child: Text('downloadDialog_Button'.tr),
             ),
             SizedBox(
               height: 15,
               child: Obx(() => Offstage(
                     child: Text(
-                      '未查询到文件',
+                      'downloadDialog_failure'.tr,
                       style: TextStyle(color: Colors.red),
                     ),
                     offstage: searched.value,
