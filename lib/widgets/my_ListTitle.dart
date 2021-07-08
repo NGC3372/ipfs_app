@@ -77,6 +77,28 @@ class MyListTitle extends StatelessWidget {
             break;
         }
       },
+      onLongPress: () {
+        showSetDialog();
+      },
     );
+  }
+
+  void showSetDialog() {
+    Get.dialog(SimpleDialog(
+      children: [
+        SimpleDialogOption(
+          child: Text('修改信息'),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        SimpleDialogOption(
+          child: Text('删除'),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      ],
+    ));
   }
 }
