@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/controllers/home_contro.dart';
-import 'package:ipfs_app/home_page.dart';
 import 'package:ipfs_app/widgets/my_ListTitle.dart';
-
-import 'beans/download_info.dart';
 
 // ignore: must_be_immutable
 class SearchPage extends StatelessWidget {
@@ -15,14 +12,14 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
           leading: IconButton(
               onPressed: () {
                 Get.back();
               },
               icon: Icon(
                 Icons.arrow_back_ios,
-                color: Colors.black,
+                color: Get.isDarkMode ? Colors.white : Colors.black,
               )),
           title: TextField(
             controller: searchController,
@@ -40,7 +37,7 @@ class SearchPage extends StatelessWidget {
                 searchController.text = '';
               },
               icon: Icon(Icons.clear),
-              color: Colors.black,
+              color: Get.isDarkMode ? Colors.white : Colors.black,
             )
           ],
         ),
@@ -49,15 +46,14 @@ class SearchPage extends StatelessWidget {
             Divider(),
             Expanded(
               child: Container(
-                  color: Colors.white,
                   child: Obx(
-                    () => ListView.builder(
-                      itemCount: searchedList.length,
-                      itemBuilder: (context, index) {
-                        return MyListTitle(searchedList[index]);
-                      },
-                    ),
-                  )),
+                () => ListView.builder(
+                  itemCount: searchedList.length,
+                  itemBuilder: (context, index) {
+                    return MyListTitle(searchedList[index]);
+                  },
+                ),
+              )),
             )
           ],
         ));

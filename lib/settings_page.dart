@@ -40,6 +40,10 @@ class SettingsPage extends StatelessWidget {
                     value: select.value,
                     onChanged: (value) {
                       select.value = !select.value;
+                      if (select.value)
+                        Get.changeTheme(ThemeData.dark());
+                      else
+                        Get.changeTheme(ThemeData.light());
                       DataUtil.preferences.setBool("AppDarkMode", select.value);
                     },
                   )),

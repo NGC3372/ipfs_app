@@ -14,7 +14,7 @@ class MyListTitle extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0),
-            color: Colors.white,
+            color: Get.isDarkMode ? Colors.black : Colors.white,
             boxShadow: [
               BoxShadow(
                   color: Colors.black54,
