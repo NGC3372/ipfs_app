@@ -15,6 +15,7 @@ class SettingsPage extends StatelessWidget {
           title: Text('settingPage_title'.tr),
         ),
         body: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
               leading: Icon(Icons.explore),
@@ -39,18 +40,25 @@ class SettingsPage extends StatelessWidget {
               trailing: Obx(() => Switch(
                     value: select.value,
                     onChanged: (value) {
-                      select.value = !select.value;
-                      if (select.value)
-                        Get.changeTheme(ThemeData.dark());
-                      else
-                        Get.changeTheme(ThemeData.light());
-                      DataUtil.preferences.setBool("AppDarkMode", select.value);
+                      changeTheme(value);
                     },
                   )),
             ),
             Divider(),
           ],
         ));
+  }
+
+  void changeTheme(bool value) {
+    select.value = !select.value;
+    print('dark?');
+    print(Get.isDarkMode);
+    if (value) {
+      Get.changeTheme(ThemeData.dark());
+      //ThemeData.print('dark!!!!');
+    } else
+      Get.changeTheme(ThemeData.light());
+    DataUtil.preferences.setBool("AppDarkMode", select.value);
   }
 
   void setUriDialog() {
@@ -95,6 +103,7 @@ class SettingsPage extends StatelessWidget {
           child: Text("settingPage_LanguageDialog_Chinese".tr),
           onPressed: () {
             var locale = Locale('zh', 'CN');
+            DataUtil.preferences.setString("AppLanguage", "ZH");
             Get.updateLocale(locale);
             Get.back();
           },
@@ -103,6 +112,7 @@ class SettingsPage extends StatelessWidget {
           child: Text("settingPage_LanguageDialog_English".tr),
           onPressed: () {
             var locale = Locale('en', 'US');
+            DataUtil.preferences.setString("AppLanguage", "US");
             Get.updateLocale(locale);
             Get.back();
           },

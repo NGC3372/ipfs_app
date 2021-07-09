@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -44,10 +45,18 @@ class DataUtil {
     String language = DataUtil.preferences.getString("AppLanguage");
     if (language == null) {
       DataUtil.preferences.setString("AppLanguage", 'ZH');
+      language = 'ZH';
     }
     bool darkMode = DataUtil.preferences.getBool('AppDarkMode');
     if (darkMode == null) {
       DataUtil.preferences.setBool("AppDarkMode", false);
     }
+    DataUtil.preferences.getString('AppLanguage') == "ZH"
+        ? Get.updateLocale(Locale('zh', 'CN'))
+        : Get.updateLocale(Locale('en', 'US'));
+
+    DataUtil.preferences.getBool('AppDarkMode')
+        ? Get.changeTheme(ThemeData.dark())
+        : Get.changeTheme(ThemeData.light());
   }
 }

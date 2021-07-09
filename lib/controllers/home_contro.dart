@@ -7,8 +7,6 @@ import 'package:ipfs_app/utils/http.dart';
 import 'package:ipfs_app/utils/local_data.dart';
 
 class ControlHome extends GetxController {
-  var a = "hello9".obs;
-
   RxList<DownloadInfo> downloadedInfo = RxList<DownloadInfo>([]);
 
   @override
