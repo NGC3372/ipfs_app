@@ -17,9 +17,9 @@ void main() {
   runApp(GetMaterialApp(
     translations: MyLanguage(),
     locale: ui.window.locale,
+    themeMode: ThemeMode.light,
     fallbackLocale: Locale('en', 'US'),
     initialRoute: 'home',
-    darkTheme: null,
     getPages: [
       GetPage(
         name: 'home',

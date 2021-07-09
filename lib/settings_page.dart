@@ -53,6 +53,7 @@ class SettingsPage extends StatelessWidget {
     select.value = !select.value;
     print('dark?');
     print(Get.isDarkMode);
+    print(Get.isPlatformDarkMode);
     if (value) {
       Get.changeTheme(ThemeData.dark());
       //ThemeData.print('dark!!!!');
