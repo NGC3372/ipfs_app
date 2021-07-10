@@ -54,10 +54,9 @@ class SettingsPage extends StatelessWidget {
     print('dark?');
     print(Get.isDarkMode);
     print(Get.isPlatformDarkMode);
-    if (value) {
+    if (value)
       Get.changeTheme(ThemeData.dark());
-      //ThemeData.print('dark!!!!');
-    } else
+    else
       Get.changeTheme(ThemeData.light());
     DataUtil.preferences.setBool("AppDarkMode", select.value);
   }

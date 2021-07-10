@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ipfs_app/change_file_info_page.dart';
 import 'package:ipfs_app/controllers/home_contro.dart';
 import 'package:ipfs_app/download_info_page.dart';
 import 'package:ipfs_app/settings_page.dart';
@@ -17,7 +18,7 @@ void main() {
   runApp(GetMaterialApp(
     translations: MyLanguage(),
     locale: ui.window.locale,
-    themeMode: ThemeMode.light,
+    themeMode: Get.isPlatformDarkMode ? ThemeMode.light : ThemeMode.dark,
     fallbackLocale: Locale('en', 'US'),
     initialRoute: 'home',
     getPages: [
@@ -33,6 +34,7 @@ void main() {
       GetPage(name: 'videoPage', page: () => VideoPage()),
       GetPage(name: 'audioPage', page: () => AudioPage()),
       GetPage(name: 'searchPage', page: () => SearchPage()),
+      GetPage(name: 'changeFileInfoPage', page: () => ChangeFileInfoPage()),
     ],
   ));
 }

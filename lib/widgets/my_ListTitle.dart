@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/controllers/home_contro.dart';
@@ -89,12 +91,13 @@ class MyListTitle extends StatelessWidget {
         SimpleDialogOption(
           child: Text('修改信息'),
           onPressed: () {
-            Get.back();
+            Get.offNamed('changeFileInfoPage', arguments: {'index': index});
           },
         ),
         SimpleDialogOption(
           child: Text('删除'),
           onPressed: () {
+            Get.find<ControlHome>().deleteFile(index);
             Get.back();
           },
         ),

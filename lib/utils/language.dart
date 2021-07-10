@@ -32,6 +32,7 @@ class MyLanguage extends Translations {
           'downloadInfoPage_fileType_picture': "图片",
           'downloadInfoPage_Button': "下载",
           'downloadInfoPage_ContentNull': "该项内容不能为空",
+          'changeFileInfoPage_Button': "修改",
         },
         'en_US': {
           'home_title': 'Download List',
@@ -60,6 +61,7 @@ class MyLanguage extends Translations {
           'downloadInfoPage_fileType_picture': "picture",
           'downloadInfoPage_Button': "Download",
           'downloadInfoPage_ContentNull': "This content cannot be empty",
+          'changeFileInfoPage_Button': "change",
         }
       };
 }
