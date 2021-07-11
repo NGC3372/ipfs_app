@@ -60,16 +60,14 @@ class MyListTitle extends StatelessWidget {
       ),
       onTap: () {
         String hash = Get.find<ControlHome>().downloadedInfo[index].hash;
-        String fileName =
-            Get.find<ControlHome>().downloadedInfo[index].fileName;
-        String filePath = DataUtil.appDocPath + "$hash$fileName";
+        String filePath = DataUtil.appDocPath + "$hash";
         print(filePath);
         switch (Get.find<ControlHome>().downloadedInfo[index].type) {
           case 'text/html':
             Get.toNamed('textPage', arguments: {'path': filePath});
             break;
           case 'audio':
-            Get.toNamed('audioPage', arguments: {'path': filePath});
+            Get.toNamed('videoPage', arguments: {'path': filePath});
             break;
           case 'video':
             Get.toNamed('videoPage', arguments: {'path': filePath});

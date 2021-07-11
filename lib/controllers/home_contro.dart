@@ -64,8 +64,7 @@ class ControlHome extends GetxController {
 
   void deleteFile(index) {
     var dataBean = downloadedInfo[index];
-    File(DataUtil.appDocPath + '/${dataBean.hash}${dataBean.fileName} ')
-        .delete();
+    File(DataUtil.appDocPath + '/${dataBean.hash}').delete();
     Get.find<ControlHome>().downloadedInfo.removeAt(index);
     writeDownloadList();
   }

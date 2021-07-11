@@ -10,8 +10,6 @@ class TextPage extends StatelessWidget {
   Widget build(BuildContext context) {
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
     String filepath = Get.arguments['path'];
-    print("!!!!!!!!!");
-    print(filepath);
     return Scaffold(
       appBar: AppBar(
         title: Text('textPage'),

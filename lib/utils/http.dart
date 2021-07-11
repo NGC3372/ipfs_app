@@ -11,11 +11,12 @@ class MyHttp {
         '/api/v0/object/stat?arg=' +
         hash;
     print(uri);
+
     try {
       var response = await dio.post(uri);
       return response;
     } on DioError catch (e) {
-      print('erro!!!!!!!');
+      print('error!!!!!!!');
       print(e.response);
       return null;
     }
@@ -27,7 +28,7 @@ class MyHttp {
         '/api/v0/cat?arg=' +
         hash;
     print(uri);
-    await dio.download(uri, DataUtil.appDocPath + "/$hash$fileName",
+    await dio.download(uri, DataUtil.appDocPath + "/$hash",
         onReceiveProgress: (received, total) {
       Get.find<ControlHome>().downloadedInfo[listIndex].progress.value =
           double.tryParse((received / fileSize).toStringAsFixed(2));
