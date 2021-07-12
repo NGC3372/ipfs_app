@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/utils/local_data.dart';
+import 'package:ipfs_app/widgets/uri_dialog.dart';
 
 // ignore: must_be_immutable
 class SettingsPage extends StatelessWidget {
   RxBool select = RxBool(DataUtil.preferences.getBool('AppDarkMode'));
   RxString uri = RxString(DataUtil.preferences.getString('RequestURI'));
+  Color iconColor = Get.isDarkMode ? Colors.white : Get.theme.primaryColor;
+  TextStyle textStyle = TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
@@ -18,25 +21,43 @@ class SettingsPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: Icon(Icons.explore),
-              title: Text('settingPage_requestURI'.tr),
+              leading: Icon(
+                Icons.explore,
+                color: iconColor,
+              ),
+              title: Text(
+                'settingPage_requestURI'.tr,
+                style: textStyle,
+              ),
               subtitle: Obx(() => Text(uri.value)),
               onTap: () {
-                setUriDialog();
+                Get.dialog(UriDialog(), arguments: {'uri': uri});
               },
             ),
             Divider(),
             ListTile(
-              leading: Icon(Icons.language),
-              title: Text('settingPage_language'.tr),
+              leading: Icon(
+                Icons.language,
+                color: iconColor,
+              ),
+              title: Text(
+                'settingPage_language'.tr,
+                style: textStyle,
+              ),
               onTap: () {
                 setLanguageDialog();
               },
             ),
             Divider(),
             ListTile(
-              leading: Icon(Icons.dark_mode),
-              title: Text('settingPage_darkMode'.tr),
+              leading: Icon(
+                Icons.dark_mode,
+                color: iconColor,
+              ),
+              title: Text(
+                'settingPage_darkMode'.tr,
+                style: textStyle,
+              ),
               trailing: Obx(() => Switch(
                     value: select.value,
                     onChanged: (value) {
@@ -57,42 +78,12 @@ class SettingsPage extends StatelessWidget {
     if (value)
       Get.changeTheme(ThemeData.dark());
     else
-      Get.changeTheme(ThemeData.light());
-    DataUtil.preferences.setBool("AppDarkMode", select.value);
-  }
-
-  void setUriDialog() {
-    TextEditingController controller = TextEditingController();
-    Get.dialog(SimpleDialog(
-      title: Text('URI'),
-      children: [
-        Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: GestureDetector(
-              child: Text(
-                "settingPage_URIDialog_content".tr,
-                style: TextStyle(color: Colors.grey),
-              ),
-              onTap: () {
-                controller.text = 'https://www.guohao.icu';
-              },
-            )),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: TextField(
-            autofocus: true,
-            controller: controller,
-          ),
+      Get.changeTheme(
+        ThemeData(
+          primarySwatch: Colors.red,
         ),
-        TextButton(
-            onPressed: () {
-              DataUtil.preferences.setString("RequestURI", controller.text);
-              uri.value = controller.text;
-              Get.back();
-            },
-            child: Text('settingPage_URIDialog_OK'.tr))
-      ],
-    ));
+      );
+    DataUtil.preferences.setBool("AppDarkMode", select.value);
   }
 
   void setLanguageDialog() {

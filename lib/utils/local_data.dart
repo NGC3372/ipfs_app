@@ -50,13 +50,17 @@ class DataUtil {
     bool darkMode = DataUtil.preferences.getBool('AppDarkMode');
     if (darkMode == null) {
       DataUtil.preferences.setBool("AppDarkMode", false);
+      darkMode = false;
     }
+
     DataUtil.preferences.getString('AppLanguage') == "ZH"
         ? Get.updateLocale(Locale('zh', 'CN'))
         : Get.updateLocale(Locale('en', 'US'));
 
     DataUtil.preferences.getBool('AppDarkMode')
         ? Get.changeTheme(ThemeData.dark())
-        : Get.changeTheme(ThemeData.light());
+        : Get.changeTheme(ThemeData(
+            primarySwatch: Colors.red,
+          ));
   }
 }

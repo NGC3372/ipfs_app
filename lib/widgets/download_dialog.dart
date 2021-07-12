@@ -16,14 +16,17 @@ class MyDownloadDialog extends StatelessWidget {
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextField(
-              autofocus: true,
-              enabled: true,
-              decoration: InputDecoration(
-                border: null,
-                hintText: 'downloadDialog_Hint'.tr,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: TextField(
+                autofocus: true,
+                enabled: true,
+                decoration: InputDecoration(
+                  border: null,
+                  hintText: 'downloadDialog_Hint'.tr,
+                ),
+                controller: hashControler,
               ),
-              controller: hashControler,
             ),
             TextButton(
               onPressed: () {
