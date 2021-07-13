@@ -60,7 +60,7 @@ class MyLanguage extends Translations {
           'downloadInfoPage_fileType_video': "video",
           'downloadInfoPage_fileType_picture': "picture",
           'downloadInfoPage_Button': "Download",
-          'downloadInfoPage_ContentNull': "This content cannot be empty",
+          'downloadInfoPage_ContentNull': "Should not be empty",
           'changeFileInfoPage_Button': "change",
         }
       };

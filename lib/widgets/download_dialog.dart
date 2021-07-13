@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:ipfs_app/utils/http.dart';
+import 'package:ipfs_app/widgets/my_textField.dart';
+
+import 'my_button.dart';
 
 // ignore: must_be_immutable
 class MyDownloadDialog extends StatelessWidget {
-  final TextEditingController hashControler = TextEditingController();
   var searched = true.obs;
+  final MyTextFeild myTextFeild = MyTextFeild(
+    hintText: 'downloadDialog_Hint'.tr,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -17,33 +22,31 @@ class MyDownloadDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextField(
-                autofocus: true,
-                enabled: true,
-                decoration: InputDecoration(
-                  border: null,
-                  hintText: 'downloadDialog_Hint'.tr,
-                ),
-                controller: hashControler,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: myTextFeild,
             ),
-            TextButton(
-              onPressed: () {
-                searchFile(hashControler.text);
+            SizedBox(
+              height: 20,
+            ),
+            MyTextButton(
+              tap: () {
+                searchFile(myTextFeild.textValue);
               },
-              child: Text('downloadDialog_Button'.tr),
+              text: 'downloadDialog_Button'.tr,
             ),
             SizedBox(
               height: 15,
+            ),
+            SizedBox(
+              height: 20,
               child: Obx(() => Offstage(
                     child: Text(
                       'downloadDialog_failure'.tr,
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: Colors.red, fontSize: 12),
                     ),
                     offstage: searched.value,
                   )),
-            )
+            ),
           ],
         ),
       ],

@@ -24,7 +24,7 @@ class SearchPage extends StatelessWidget {
           title: TextField(
             controller: searchController,
             autofocus: true,
-            cursorColor: Colors.grey,
+            cursorColor: Colors.black,
             onChanged: (value) {
               search(value);
             },

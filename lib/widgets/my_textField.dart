@@ -20,7 +20,7 @@ class MyTextFeild extends StatelessWidget {
           filled: true,
           fillColor: Get.isDarkMode ? Colors.grey.shade600 : Colors.white,
           contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-          hintText: 'uri',
+          hintText: hintText,
           suffixIcon: IconButton(
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,

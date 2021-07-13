@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/beans/download_info.dart';
+import 'package:ipfs_app/widgets/my_button.dart';
 
 import 'controllers/home_contro.dart';
 
@@ -12,6 +13,12 @@ class DownloadInfoPage extends StatelessWidget {
   Map args = Get.arguments;
   RxBool filenameContent = RxBool(false);
   RxBool fileTypeContent = RxBool(false);
+  TextStyle textStyleTtile = TextStyle(
+      fontSize: 15,
+      color: Get.isDarkMode ? Colors.white : Colors.black,
+      fontWeight: FontWeight.bold);
+  TextStyle textStyleContent = TextStyle(
+      fontSize: 12, color: Colors.grey, fontWeight: FontWeight.normal);
 
   @override
   Widget build(BuildContext context) {
@@ -25,55 +32,84 @@ class DownloadInfoPage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('downloadInfoPage_date'.tr),
+                child: Text(
+                  'hash',
+                  style: textStyleTtile,
+                ),
               ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Text(
                     args['hash'],
+                    style: textStyleContent,
                   ),
                 ),
               )
             ],
           ),
+          Divider(),
           Row(
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('date'),
+                child: Text(
+                  'downloadInfoPage_date'.tr,
+                  style: textStyleTtile,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text(args['date']),
+                child: Text(
+                  args['date'],
+                  style: textStyleContent,
+                ),
               ),
             ],
           ),
+          Divider(),
           Row(
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('downloadInfoPage_fileSize'.tr),
+                child: Text(
+                  'downloadInfoPage_fileSize'.tr,
+                  style: textStyleTtile,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text(args['fileSize'].toString() + 'b'),
+                child: Text(
+                  args['fileSize'].toString() + 'b',
+                  style: textStyleContent,
+                ),
               ),
             ],
           ),
+          Divider(),
           Row(
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('downloadInfoPage_fileName'.tr),
+                child: Text(
+                  'downloadInfoPage_fileName'.tr,
+                  style: textStyleTtile,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
                 child: SizedBox(
                   child: TextField(
                     controller: controller,
+                    decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                      icon: Icon(Icons.clear),
+                      onPressed: () {
+                        controller.clear();
+                      },
+                    )),
                   ),
-                  width: 80,
+                  width: 120,
                 ),
               ),
               Obx(
@@ -90,11 +126,15 @@ class DownloadInfoPage extends StatelessWidget {
               )
             ],
           ),
+          Divider(),
           Row(
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('downloadInfoPage_fileType'.tr),
+                child: Text(
+                  'downloadInfoPage_fileType'.tr,
+                  style: textStyleTtile,
+                ),
               ),
               Padding(
                   padding: EdgeInsets.all(10),
@@ -140,17 +180,15 @@ class DownloadInfoPage extends StatelessWidget {
               )
             ],
           ),
+          Divider(),
           Container(
-            height: 50,
+            height: 80,
             alignment: Alignment.center,
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: TextButton(
-                onPressed: () {
-                  download();
-                },
-                child: Text('downloadInfoPage_Button'.tr),
-              ),
+            child: MyTextButton(
+              tap: () {
+                download();
+              },
+              text: 'downloadInfoPage_Button'.tr,
             ),
           ),
         ],
