@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/utils/local_data.dart';
+import 'package:ipfs_app/widgets/my_textField.dart';
 
 import 'my_button.dart';
 
 class UriDialog extends StatelessWidget {
-  final TextEditingController controller = TextEditingController();
+  final MyTextFeild textFeild = MyTextFeild(
+    hintText: 'uri',
+  );
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
@@ -19,29 +22,30 @@ class UriDialog extends StatelessWidget {
                 style: TextStyle(color: Colors.grey),
               ),
               onTap: () {
-                controller.text = 'https://www.guohao.icu';
+                textFeild.textValue = 'https://www.guohao.icu';
               },
             )),
+        SizedBox(
+          height: 10,
+        ),
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
-              child: TextField(
-                autofocus: true,
-                controller: controller,
-              ),
+              child: textFeild,
             ),
             SizedBox(
               height: 10,
             ),
             MyTextButton(
                 tap: () {
-                  DataUtil.preferences.setString("RequestURI", controller.text);
-                  Get.arguments['uri'].value = controller.text;
+                  DataUtil.preferences
+                      .setString("RequestURI", textFeild.textValue);
+                  Get.arguments['uri'].value = textFeild.textValue;
                   Get.back();
                 },
-                text: 'settingPage_URIDialog_OK'),
+                text: 'settingPage_URIDialog_OK'.tr),
           ],
         )
       ],

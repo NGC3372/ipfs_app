@@ -12,7 +12,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
+          backgroundColor: Get.isDarkMode ? Colors.grey.shade600 : Colors.white,
           leading: IconButton(
               onPressed: () {
                 Get.back();
@@ -24,12 +24,15 @@ class SearchPage extends StatelessWidget {
           title: TextField(
             controller: searchController,
             autofocus: true,
+            cursorColor: Colors.grey,
             onChanged: (value) {
               search(value);
             },
             decoration: InputDecoration(
-              border: null,
-            ),
+                border: InputBorder.none,
+                hintText: '文件名称',
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 0, vertical: 0)),
           ),
           actions: [
             IconButton(

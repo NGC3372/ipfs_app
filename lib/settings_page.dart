@@ -88,10 +88,25 @@ class SettingsPage extends StatelessWidget {
 
   void setLanguageDialog() {
     Get.dialog(SimpleDialog(
-      title: Text('settingPage_LanguageDialog_Title'.tr),
+      title: Text(
+        'settingPage_LanguageDialog_Title'.tr,
+      ),
       children: [
         SimpleDialogOption(
-          child: Text("settingPage_LanguageDialog_Chinese".tr),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                'images/flag-China.png',
+                width: 30,
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Text("settingPage_LanguageDialog_Chinese".tr),
+              )
+            ],
+          ),
           onPressed: () {
             var locale = Locale('zh', 'CN');
             DataUtil.preferences.setString("AppLanguage", "ZH");
@@ -100,7 +115,20 @@ class SettingsPage extends StatelessWidget {
           },
         ),
         SimpleDialogOption(
-          child: Text("settingPage_LanguageDialog_English".tr),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                'images/flag-USA.png',
+                width: 30,
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: Text("settingPage_LanguageDialog_English".tr),
+              ),
+            ],
+          ),
           onPressed: () {
             var locale = Locale('en', 'US');
             DataUtil.preferences.setString("AppLanguage", "US");

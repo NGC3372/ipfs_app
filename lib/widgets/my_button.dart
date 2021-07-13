@@ -26,7 +26,7 @@ class MyTextButton extends StatelessWidget {
         },
         child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 30,
+              horizontal: 20,
             ),
             child: Text(
               text.tr,
