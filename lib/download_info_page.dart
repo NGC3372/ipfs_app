@@ -28,169 +28,175 @@ class DownloadInfoPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Row(
+          Expanded(
+              child: ListView(
             children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'hash',
-                  style: textStyleTtile,
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    args['hash'],
-                    style: textStyleContent,
-                  ),
-                ),
-              )
-            ],
-          ),
-          Divider(),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'downloadInfoPage_date'.tr,
-                  style: textStyleTtile,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  args['date'],
-                  style: textStyleContent,
-                ),
-              ),
-            ],
-          ),
-          Divider(),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'downloadInfoPage_fileSize'.tr,
-                  style: textStyleTtile,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  args['fileSize'].toString() + 'b',
-                  style: textStyleContent,
-                ),
-              ),
-            ],
-          ),
-          Divider(),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'downloadInfoPage_fileName'.tr,
-                  style: textStyleTtile,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: SizedBox(
-                  child: TextField(
-                    controller: controller,
-                    decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                      icon: Icon(Icons.clear),
-                      onPressed: () {
-                        controller.clear();
-                      },
-                    )),
-                  ),
-                  width: 120,
-                ),
-              ),
-              Obx(
-                () => Visibility(
-                  visible: filenameContent.value,
-                  child: Padding(
+              Row(
+                children: [
+                  Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'downloadInfoPage_ContentNull'.tr,
-                      style: TextStyle(color: Colors.red),
+                      'hash',
+                      style: textStyleTtile,
                     ),
                   ),
-                ),
-              )
-            ],
-          ),
-          Divider(),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'downloadInfoPage_fileType'.tr,
-                  style: textStyleTtile,
-                ),
-              ),
-              Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Obx(
-                    () => DropdownButton(
-                      hint: Text('downloadInfoPage_fileType_hint'.tr),
-                      value: selectValue.value,
-                      items: [
-                        DropdownMenuItem(
-                          child: Text('downloadInfoPage_fileType_text/html'.tr),
-                          value: 'text/html',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('downloadInfoPage_fileType_audio'.tr),
-                          value: 'audio',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('downloadInfoPage_fileType_video'.tr),
-                          value: 'video',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('downloadInfoPage_fileType_picture'.tr),
-                          value: 'picture',
-                        ),
-                      ],
-                      onChanged: (value) {
-                        selectValue.value = value;
-                        print(value);
-                      },
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        args['hash'],
+                        style: textStyleContent,
+                      ),
                     ),
-                  )),
-              Obx(
-                () => Visibility(
-                  visible: fileTypeContent.value,
-                  child: Padding(
+                  )
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'downloadInfoPage_ContentNull'.tr,
-                      style: TextStyle(color: Colors.red),
+                      'downloadInfoPage_date'.tr,
+                      style: textStyleTtile,
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      args['date'],
+                      style: textStyleContent,
+                    ),
+                  ),
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'downloadInfoPage_fileSize'.tr,
+                      style: textStyleTtile,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      args['fileSize'].toString() + 'b',
+                      style: textStyleContent,
+                    ),
+                  ),
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      'downloadInfoPage_fileName'.tr,
+                      style: textStyleTtile,
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: TextField(
+                        controller: controller,
+                        decoration: InputDecoration(
+                            suffixIcon: IconButton(
+                          icon: Icon(Icons.clear),
+                          onPressed: () {
+                            controller.clear();
+                          },
+                        )),
+                      ),
+                    ),
+                  ),
+                  Obx(
+                    () => Visibility(
+                      visible: filenameContent.value,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          'downloadInfoPage_ContentNull'.tr,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'downloadInfoPage_fileType'.tr,
+                      style: textStyleTtile,
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Obx(
+                        () => DropdownButton(
+                          hint: Text('downloadInfoPage_fileType_hint'.tr),
+                          value: selectValue.value,
+                          items: [
+                            DropdownMenuItem(
+                              child: Text(
+                                  'downloadInfoPage_fileType_text/html'.tr),
+                              value: 'text/html',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('downloadInfoPage_fileType_audio'.tr),
+                              value: 'audio',
+                            ),
+                            DropdownMenuItem(
+                              child: Text('downloadInfoPage_fileType_video'.tr),
+                              value: 'video',
+                            ),
+                            DropdownMenuItem(
+                              child:
+                                  Text('downloadInfoPage_fileType_picture'.tr),
+                              value: 'picture',
+                            ),
+                          ],
+                          onChanged: (value) {
+                            selectValue.value = value;
+                            print(value);
+                          },
+                        ),
+                      )),
+                  Obx(
+                    () => Visibility(
+                      visible: fileTypeContent.value,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          'downloadInfoPage_ContentNull'.tr,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Divider(),
+              Container(
+                height: 80,
+                alignment: Alignment.center,
+                child: MyTextButton(
+                  tap: () {
+                    download();
+                  },
+                  text: 'downloadInfoPage_Button'.tr,
                 ),
-              )
+              ),
             ],
-          ),
-          Divider(),
-          Container(
-            height: 80,
-            alignment: Alignment.center,
-            child: MyTextButton(
-              tap: () {
-                download();
-              },
-              text: 'downloadInfoPage_Button'.tr,
-            ),
-          ),
+          ))
         ],
       ),
     );

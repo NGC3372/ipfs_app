@@ -87,13 +87,20 @@ class MyListTitle extends StatelessWidget {
     Get.dialog(SimpleDialog(
       children: [
         SimpleDialogOption(
-          child: Text('修改信息'),
+          child: Text(
+            '修改信息',
+            style: TextStyle(fontSize: 15),
+          ),
           onPressed: () {
             Get.offNamed('changeFileInfoPage', arguments: {'index': index});
           },
         ),
+        Divider(),
         SimpleDialogOption(
-          child: Text('删除'),
+          child: Text(
+            '删除',
+            style: TextStyle(fontSize: 15),
+          ),
           onPressed: () {
             Get.find<ControlHome>().deleteFile(index);
             Get.back();

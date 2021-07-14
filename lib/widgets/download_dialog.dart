@@ -9,6 +9,7 @@ import 'my_button.dart';
 // ignore: must_be_immutable
 class MyDownloadDialog extends StatelessWidget {
   var searched = true.obs;
+  var searching = false.obs;
   final MyTextFeild myTextFeild = MyTextFeild(
     hintText: 'downloadDialog_Hint'.tr,
   );
@@ -28,11 +29,22 @@ class MyDownloadDialog extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            MyTextButton(
-              tap: () {
-                searchFile(myTextFeild.textValue);
-              },
-              text: 'downloadDialog_Button'.tr,
+            SizedBox(
+              height: 50,
+              child: Obx(
+                () => searching.value
+                    ? SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(),
+                      )
+                    : MyTextButton(
+                        tap: () {
+                          searchFile(myTextFeild.textValue);
+                        },
+                        text: 'downloadDialog_Button'.tr,
+                      ),
+              ),
             ),
             SizedBox(
               height: 15,
@@ -55,6 +67,7 @@ class MyDownloadDialog extends StatelessWidget {
 
   Future searchFile(String hash) async {
     searched.value = true;
+    searching.value = true;
     var response = await MyHttp.getDownloadInfo(hash);
 
     if (response != null) {
@@ -68,6 +81,7 @@ class MyDownloadDialog extends StatelessWidget {
       });
     } else {
       searched.value = false;
+      searching.value = false;
     }
   }
 }
