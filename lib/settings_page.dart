@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/utils/local_data.dart';
+import 'package:ipfs_app/widgets/language_dialog.dart';
 import 'package:ipfs_app/widgets/uri_dialog.dart';
 
 // ignore: must_be_immutable
 class SettingsPage extends StatelessWidget {
   RxBool select = RxBool(DataUtil.preferences.getBool('AppDarkMode'));
   RxString uri = RxString(DataUtil.preferences.getString('RequestURI'));
+  RxString language = DataUtil.preferences.getString('AppLanguage') == 'ZH'
+      ? RxString('简体中文')
+      : RxString('English-USA');
   Color iconColor = Get.isDarkMode ? Colors.white : Get.theme.primaryColor;
   TextStyle textStyle = TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
-    print(uri.value);
     return Scaffold(
         appBar: AppBar(
           title: Text('settingPage_title'.tr),
@@ -44,8 +47,10 @@ class SettingsPage extends StatelessWidget {
                 'settingPage_language'.tr,
                 style: textStyle,
               ),
+              subtitle: Obx(() => Text(language.value)),
               onTap: () {
-                setLanguageDialog();
+                Get.dialog(MyLanguageDialog(),
+                    arguments: {'language': language});
               },
             ),
             Divider(),
@@ -84,59 +89,5 @@ class SettingsPage extends StatelessWidget {
         ),
       );
     DataUtil.preferences.setBool("AppDarkMode", select.value);
-  }
-
-  void setLanguageDialog() {
-    Get.dialog(SimpleDialog(
-      title: Text(
-        'settingPage_LanguageDialog_Title'.tr,
-      ),
-      children: [
-        SimpleDialogOption(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                'images/flag-China.png',
-                width: 30,
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: Text("settingPage_LanguageDialog_Chinese".tr),
-              )
-            ],
-          ),
-          onPressed: () {
-            var locale = Locale('zh', 'CN');
-            DataUtil.preferences.setString("AppLanguage", "ZH");
-            Get.updateLocale(locale);
-            Get.back();
-          },
-        ),
-        SimpleDialogOption(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                'images/flag-USA.png',
-                width: 30,
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: Text("settingPage_LanguageDialog_English".tr),
-              ),
-            ],
-          ),
-          onPressed: () {
-            var locale = Locale('en', 'US');
-            DataUtil.preferences.setString("AppLanguage", "US");
-            Get.updateLocale(locale);
-            Get.back();
-          },
-        )
-      ],
-    ));
   }
 }

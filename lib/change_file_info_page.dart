@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/beans/download_info.dart';
 import 'package:ipfs_app/controllers/home_contro.dart';
+import 'package:ipfs_app/widgets/my_button.dart';
 
 class ChangeFileInfoPage extends StatelessWidget {
   final TextEditingController controller = TextEditingController();
@@ -10,6 +11,12 @@ class ChangeFileInfoPage extends StatelessWidget {
   final RxBool fileTypeContent = RxBool(false);
   final RxString selectValue = RxString(null);
   final int index = Get.arguments['index'];
+  final TextStyle textStyleTtile = TextStyle(
+      fontSize: 15,
+      color: Get.isDarkMode ? Colors.white : Colors.black,
+      fontWeight: FontWeight.bold);
+  final TextStyle textStyleContent = TextStyle(
+      fontSize: 12, color: Colors.grey, fontWeight: FontWeight.normal);
 
   @override
   Widget build(BuildContext context) {
@@ -27,45 +34,65 @@ class ChangeFileInfoPage extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('Hash'),
+                child: Text(
+                  'Hash',
+                  style: textStyleTtile,
+                ),
               ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Text(
                     dataBean.date,
+                    style: textStyleContent,
                   ),
                 ),
               )
             ],
           ),
+          Divider(),
           Row(
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('downloadInfoPage_date'.tr),
+                child: Text(
+                  'downloadInfoPage_date'.tr,
+                  style: textStyleTtile,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text(dataBean.date),
+                child: Text(
+                  dataBean.date,
+                  style: textStyleContent,
+                ),
               ),
             ],
           ),
+          Divider(),
           Row(
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('downloadInfoPage_fileName'.tr),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: SizedBox(
-                  child: TextField(
-                    controller: controller,
-                  ),
-                  width: 80,
+                child: Text(
+                  'downloadInfoPage_fileName'.tr,
+                  style: textStyleTtile,
                 ),
               ),
+              Expanded(
+                  child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: TextField(
+                  controller: controller,
+                  decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                    icon: Icon(Icons.clear),
+                    onPressed: () {
+                      controller.clear();
+                    },
+                  )),
+                ),
+              )),
               Obx(
                 () => Visibility(
                   visible: filenameContent.value,
@@ -80,11 +107,15 @@ class ChangeFileInfoPage extends StatelessWidget {
               )
             ],
           ),
+          Divider(),
           Row(
             children: [
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Text('downloadInfoPage_fileType'.tr),
+                child: Text(
+                  'downloadInfoPage_fileType'.tr,
+                  style: textStyleTtile,
+                ),
               ),
               Padding(
                   padding: EdgeInsets.all(10),
@@ -130,17 +161,15 @@ class ChangeFileInfoPage extends StatelessWidget {
               )
             ],
           ),
+          Divider(),
           Container(
-            height: 50,
+            height: 80,
             alignment: Alignment.center,
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: TextButton(
-                onPressed: () {
-                  submit();
-                },
-                child: Text('changeFileInfoPage_Button'.tr),
-              ),
+            child: MyTextButton(
+              tap: () {
+                submit();
+              },
+              text: 'changeFileInfoPage_Button'.tr,
             ),
           ),
         ],

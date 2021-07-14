@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 class MyLanguage extends Translations {
   @override
-  // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
         'zh_CN': {
           'home_title': '下载列表',

@@ -28,12 +28,21 @@ class HomePage extends GetView<ControlHome> {
         ],
       ),
       body: Obx(
-        () => ListView.builder(
-          itemCount: controller.downloadedInfo.length,
-          itemBuilder: (context, index) {
-            return MyListTitle(controller.downloadedInfo.length - 1 - index);
-          },
-        ),
+        () => controller.downloadedInfo.length == 0
+            ? Center(
+                child: SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Image.asset('images/null.png'),
+                ),
+              )
+            : ListView.builder(
+                itemCount: controller.downloadedInfo.length,
+                itemBuilder: (context, index) {
+                  return MyListTitle(
+                      controller.downloadedInfo.length - 1 - index);
+                },
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
