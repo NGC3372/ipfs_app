@@ -30,7 +30,7 @@ class SearchPage extends StatelessWidget {
             },
             decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: '文件名称',
+                hintText: 'search_page_hint'.tr,
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 0, vertical: 0)),
           ),

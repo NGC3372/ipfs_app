@@ -1,15 +1,18 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ipfs_app/beans/download_info.dart';
 import 'package:ipfs_app/controllers/home_contro.dart';
 import 'package:ipfs_app/utils/local_data.dart';
 
+// ignore: must_be_immutable
 class MyListTitle extends StatelessWidget {
   final int index;
+  DownloadInfo dataBean;
+
   MyListTitle(this.index) {
-    print(index);
+    dataBean = Get.find<ControlHome>().downloadedInfo[index];
   }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -28,30 +31,53 @@ class MyListTitle extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: DataUtil.setFileType(
-                  Get.find<ControlHome>().downloadedInfo[index].type),
-              title:
-                  Text(Get.find<ControlHome>().downloadedInfo[index].fileName),
-              subtitle:
-                  Text(Get.find<ControlHome>().downloadedInfo[index].hash),
-              trailing:
-                  Text(Get.find<ControlHome>().downloadedInfo[index].date),
-            ),
+                leading: DataUtil.setFileType(dataBean.type),
+                title: Row(
+                  children: [
+                    Text(
+                      dataBean.fileName,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Expanded(
+                        child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: Text(
+                          'listItem_date'.tr + ': ${dataBean.date}',
+                          style: TextStyle(
+                              color:
+                                  Get.isDarkMode ? Colors.white : Colors.black,
+                              fontSize: 13),
+                        ),
+                      ),
+                    ))
+                  ],
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Hash:' + dataBean.hash,
+                        style: TextStyle(fontSize: 12)),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      child: Text(
+                          'listItem_fileSize'.tr +
+                              ': ${dataBean.fileSize.toString()}' +
+                              'b',
+                          style: TextStyle(fontSize: 14)),
+                    )
+                  ],
+                )),
             Padding(
                 padding: EdgeInsets.only(bottom: 5.0, left: 5.0, right: 5.0),
                 child: Obx(() {
                   return Visibility(
-                      visible: !Get.find<ControlHome>()
-                          .downloadedInfo[index]
-                          .done
-                          .value,
+                      visible: !dataBean.done.value,
                       child: SizedBox(
                         height: 7.0,
                         child: LinearProgressIndicator(
-                          value: Get.find<ControlHome>()
-                              .downloadedInfo[index]
-                              .progress
-                              .value,
+                          value: dataBean.progress.value,
                         ),
                       ));
                 }))
@@ -59,10 +85,10 @@ class MyListTitle extends StatelessWidget {
         ),
       ),
       onTap: () {
-        String hash = Get.find<ControlHome>().downloadedInfo[index].hash;
+        String hash = dataBean.hash;
         String filePath = DataUtil.appDocPath + "$hash";
-        print(filePath);
-        switch (Get.find<ControlHome>().downloadedInfo[index].type) {
+
+        switch (dataBean.type) {
           case 'text/html':
             Get.toNamed('textPage', arguments: {'path': filePath});
             break;
@@ -88,7 +114,7 @@ class MyListTitle extends StatelessWidget {
       children: [
         SimpleDialogOption(
           child: Text(
-            '修改信息',
+            'listItem_dialog_changeFileInfo'.tr,
             style: TextStyle(fontSize: 15),
           ),
           onPressed: () {
@@ -98,7 +124,7 @@ class MyListTitle extends StatelessWidget {
         Divider(),
         SimpleDialogOption(
           child: Text(
-            '删除',
+            'listItem_dialog_deleteFile'.tr,
             style: TextStyle(fontSize: 15),
           ),
           onPressed: () {

@@ -19,19 +19,23 @@ class DataUtil {
   }
 
   static Icon setFileType(String typeStr) {
-    Icon type = Icon(Icons.file_copy);
+    Icon type;
     switch (typeStr) {
       case 'text/html':
-        type = Icon(Icons.web);
+        type = Icon(Icons.web,
+            size: 40, color: Get.isDarkMode ? Colors.white : Colors.red);
         break;
       case 'audio':
-        type = Icon(Icons.audiotrack);
+        type = Icon(Icons.audiotrack,
+            size: 40, color: Get.isDarkMode ? Colors.white : Colors.red);
         break;
       case 'video':
-        type = Icon(Icons.video_call);
+        type = Icon(Icons.video_call,
+            size: 40, color: Get.isDarkMode ? Colors.white : Colors.red);
         break;
       case 'picture':
-        type = Icon(Icons.picture_in_picture);
+        type = Icon(Icons.picture_in_picture,
+            size: 40, color: Get.isDarkMode ? Colors.white : Colors.red);
         break;
     }
     return type;

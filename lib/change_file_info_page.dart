@@ -26,7 +26,7 @@ class ChangeFileInfoPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('downloadInfoPage_title'.tr),
+        title: Text('changeFileInfoPage_Title'.tr),
       ),
       body: Column(
         children: [
@@ -43,7 +43,7 @@ class ChangeFileInfoPage extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    dataBean.date,
+                    dataBean.hash,
                     style: textStyleContent,
                   ),
                 ),
@@ -56,7 +56,7 @@ class ChangeFileInfoPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  'downloadInfoPage_date'.tr,
+                  'changeFileInfoPage_date'.tr,
                   style: textStyleTtile,
                 ),
               ),
@@ -75,7 +75,26 @@ class ChangeFileInfoPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  'downloadInfoPage_fileName'.tr,
+                  'changeFileInfoPage_fileSize'.tr,
+                  style: textStyleTtile,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  '${dataBean.fileSize.toString()}b',
+                  style: textStyleContent,
+                ),
+              ),
+            ],
+          ),
+          Divider(),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  'changeFileInfoPage_fileName'.tr,
                   style: textStyleTtile,
                 ),
               ),
@@ -99,7 +118,7 @@ class ChangeFileInfoPage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'downloadInfoPage_ContentNull'.tr,
+                      'changeFileInfoPage_ContentNull'.tr,
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
@@ -121,23 +140,24 @@ class ChangeFileInfoPage extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   child: Obx(
                     () => DropdownButton(
-                      hint: Text('downloadInfoPage_fileType_hint'.tr),
+                      hint: Text('changeFileInfoPage_fileType_hint'.tr),
                       value: selectValue.value,
                       items: [
                         DropdownMenuItem(
-                          child: Text('downloadInfoPage_fileType_text/html'.tr),
+                          child:
+                              Text('changeFileInfoPage_fileType_text/html'.tr),
                           value: 'text/html',
                         ),
                         DropdownMenuItem(
-                          child: Text('downloadInfoPage_fileType_audio'.tr),
+                          child: Text('changeFileInfoPage_fileType_audio'.tr),
                           value: 'audio',
                         ),
                         DropdownMenuItem(
-                          child: Text('downloadInfoPage_fileType_video'.tr),
+                          child: Text('changeFileInfoPage_fileType_video'.tr),
                           value: 'video',
                         ),
                         DropdownMenuItem(
-                          child: Text('downloadInfoPage_fileType_picture'.tr),
+                          child: Text('changeFileInfoPage_fileType_picture'.tr),
                           value: 'picture',
                         ),
                       ],
@@ -153,7 +173,7 @@ class ChangeFileInfoPage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'downloadInfoPage_ContentNull'.tr,
+                      'changeFileInfoPage_ContentNull'.tr,
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
@@ -179,10 +199,14 @@ class ChangeFileInfoPage extends StatelessWidget {
 
   void submit() {
     var dataBean = Get.find<ControlHome>().downloadedInfo[index];
-    var newDataBean = DownloadInfo(
-        controller.text, dataBean.hash, dataBean.date, selectValue.value);
-    newDataBean.done.value = true;
-    Get.find<ControlHome>().changeFileInfo(index, newDataBean);
-    Get.back();
+    var newDataBean = DownloadInfo(controller.text, dataBean.hash,
+        dataBean.date, selectValue.value, dataBean.fileSize);
+    if (controller.text == '')
+      filenameContent.value = true;
+    else {
+      newDataBean.done.value = true;
+      Get.find<ControlHome>().changeFileInfo(index, newDataBean);
+      Get.back();
+    }
   }
 }

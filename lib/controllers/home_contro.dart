@@ -15,8 +15,12 @@ class ControlHome extends GetxController {
     DataUtil.initAppSetting();
     List<DownloadInfo> temp = [];
     for (Map tempItem in await readDownloadList()) {
-      DownloadInfo tempBean = DownloadInfo(tempItem['fileName'],
-          tempItem['hash'], tempItem['date'], tempItem['type']);
+      DownloadInfo tempBean = DownloadInfo(
+          tempItem['fileName'],
+          tempItem['hash'],
+          tempItem['date'],
+          tempItem['type'],
+          tempItem['fileSize']);
       tempBean.done.value = true;
       temp.add(tempBean);
     }
@@ -55,10 +59,11 @@ class ControlHome extends GetxController {
     file.writeAsString(jsonEncode(downloadList));
   }
 
-  void onDownloadFile(int fileSize, DownloadInfo bean) async {
+  void onDownloadFile(DownloadInfo bean) async {
     downloadedInfo.add(bean);
+
     await MyHttp.downloadFile(
-        bean.hash, fileSize, downloadedInfo.length - 1, bean.fileName);
+        bean.hash, bean.fileSize, downloadedInfo.length - 1, bean.fileName);
     writeDownloadList();
   }
 

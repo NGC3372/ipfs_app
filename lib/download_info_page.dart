@@ -210,9 +210,9 @@ class DownloadInfoPage extends StatelessWidget {
     if (selectValue.value != null &&
         controller.text != null &&
         controller.text != '') {
-      DownloadInfo bean = DownloadInfo(
-          controller.text, args['hash'], args['date'], selectValue.value);
-      Get.find<ControlHome>().onDownloadFile(args['fileSize'], bean);
+      DownloadInfo bean = DownloadInfo(controller.text, args['hash'],
+          args['date'], selectValue.value, args['fileSize']);
+      Get.find<ControlHome>().onDownloadFile(bean);
       Get.back();
     }
   }
