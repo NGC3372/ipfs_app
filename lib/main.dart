@@ -8,10 +8,8 @@ import 'package:ipfs_app/picture_page.dart';
 import 'package:ipfs_app/search_page.dart';
 import 'package:ipfs_app/text_page.dart';
 import 'package:ipfs_app/utils/language.dart';
-import 'package:ipfs_app/video_page.dart';
+import 'package:ipfs_app/media_page.dart';
 import 'dart:ui' as ui;
-
-import 'audio_page.dart';
 import 'home_page.dart';
 
 void main() {
@@ -31,8 +29,7 @@ void main() {
       GetPage(name: "downloadInfoPage", page: () => DownloadInfoPage()),
       GetPage(name: 'picturePage', page: () => PicturePage()),
       GetPage(name: 'textPage', page: () => TextPage()),
-      GetPage(name: 'videoPage', page: () => VideoPage()),
-      GetPage(name: 'audioPage', page: () => AudioPage()),
+      GetPage(name: 'mediaPage', page: () => MediaPage()),
       GetPage(name: 'searchPage', page: () => SearchPage()),
       GetPage(name: 'changeFileInfoPage', page: () => ChangeFileInfoPage()),
     ],

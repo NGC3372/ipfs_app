@@ -87,19 +87,19 @@ class MyListTitle extends StatelessWidget {
       onTap: () {
         String hash = dataBean.hash;
         String filePath = DataUtil.appDocPath + "$hash";
-
+        Map args = {
+          'path': filePath,
+          'fileName': dataBean.fileName,
+        };
         switch (dataBean.type) {
           case 'text/html':
-            Get.toNamed('textPage', arguments: {'path': filePath});
+            Get.toNamed('textPage', arguments: args);
             break;
-          case 'audio':
-            Get.toNamed('videoPage', arguments: {'path': filePath});
-            break;
-          case 'video':
-            Get.toNamed('videoPage', arguments: {'path': filePath});
+          case 'media':
+            Get.toNamed('mediaPage', arguments: args);
             break;
           case 'picture':
-            Get.toNamed('picturePage', arguments: {'path': filePath});
+            Get.toNamed('picturePage', arguments: args);
             break;
         }
       },

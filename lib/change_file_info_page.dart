@@ -149,12 +149,8 @@ class ChangeFileInfoPage extends StatelessWidget {
                           value: 'text/html',
                         ),
                         DropdownMenuItem(
-                          child: Text('changeFileInfoPage_fileType_audio'.tr),
-                          value: 'audio',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('changeFileInfoPage_fileType_video'.tr),
-                          value: 'video',
+                          child: Text('changeFileInfoPage_fileType_media'.tr),
+                          value: 'media',
                         ),
                         DropdownMenuItem(
                           child: Text('changeFileInfoPage_fileType_picture'.tr),

@@ -25,16 +25,12 @@ class DataUtil {
         type = Icon(Icons.web,
             size: 40, color: Get.isDarkMode ? Colors.white : Colors.red);
         break;
-      case 'audio':
-        type = Icon(Icons.audiotrack,
-            size: 40, color: Get.isDarkMode ? Colors.white : Colors.red);
-        break;
-      case 'video':
-        type = Icon(Icons.video_call,
+      case 'media':
+        type = Icon(Icons.movie,
             size: 40, color: Get.isDarkMode ? Colors.white : Colors.red);
         break;
       case 'picture':
-        type = Icon(Icons.picture_in_picture,
+        type = Icon(Icons.photo,
             size: 40, color: Get.isDarkMode ? Colors.white : Colors.red);
         break;
     }

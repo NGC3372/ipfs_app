@@ -151,12 +151,8 @@ class DownloadInfoPage extends StatelessWidget {
                               value: 'text/html',
                             ),
                             DropdownMenuItem(
-                              child: Text('downloadInfoPage_fileType_audio'.tr),
-                              value: 'audio',
-                            ),
-                            DropdownMenuItem(
-                              child: Text('downloadInfoPage_fileType_video'.tr),
-                              value: 'video',
+                              child: Text('downloadInfoPage_fileType_media'.tr),
+                              value: 'media',
                             ),
                             DropdownMenuItem(
                               child:
