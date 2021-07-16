@@ -63,8 +63,8 @@ class MyListTitle extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 5),
                       child: Text(
                           'listItem_fileSize'.tr +
-                              ': ${dataBean.fileSize.toString()}' +
-                              'b',
+                              ': ' +
+                              DataUtil.formatFileSize(dataBean.fileSize),
                           style: TextStyle(fontSize: 14)),
                     )
                   ],

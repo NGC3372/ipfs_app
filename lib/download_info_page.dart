@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ipfs_app/beans/download_info.dart';
+import 'package:ipfs_app/utils/local_data.dart';
 import 'package:ipfs_app/widgets/my_button.dart';
 
 import 'controllers/home_contro.dart';
@@ -83,7 +84,7 @@ class DownloadInfoPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      args['fileSize'].toString() + 'b',
+                      DataUtil.formatFileSize(args['fileSize']),
                       style: textStyleContent,
                     ),
                   ),

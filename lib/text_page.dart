@@ -7,6 +7,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class TextPage extends StatelessWidget {
   final Map args = Get.arguments;
+  final RxBool loadWrong = RxBool(false);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class TextPage extends StatelessWidget {
           title: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.photo, size: 30, color: Colors.white),
+              Icon(Icons.web, size: 30, color: Colors.white),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Text(args['fileName']),
@@ -25,15 +26,33 @@ class TextPage extends StatelessWidget {
             ],
           ),
         ),
-        body: WebView(
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (controller) async {
-            String contentWeb = await File(filepath).readAsString();
-            await controller.loadUrl(Uri.dataFromString(contentWeb,
-                    mimeType: 'text/html',
-                    encoding: Encoding.getByName('utf-8'))
-                .toString());
-          },
+        body: Stack(
+          children: [
+            WebView(
+              javascriptMode: JavascriptMode.unrestricted,
+              onWebViewCreated: (controller) async {
+                try {
+                  String contentWeb = await File(filepath).readAsString();
+                  await controller.loadUrl(Uri.dataFromString(contentWeb,
+                          mimeType: 'text/html',
+                          encoding: Encoding.getByName('utf-8'))
+                      .toString());
+                } catch (e) {
+                  loadWrong.value = true;
+                }
+              },
+            ),
+            Center(
+              child: Obx(() => Visibility(
+                    child: SizedBox(
+                      height: 80,
+                      width: 80,
+                      child: Image.asset('images/wrong.png'),
+                    ),
+                    visible: loadWrong.value,
+                  )),
+            ),
+          ],
         ));
   }
 }

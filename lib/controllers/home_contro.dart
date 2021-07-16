@@ -76,6 +76,7 @@ class ControlHome extends GetxController {
 
   void changeFileInfo(int index, DownloadInfo temp) {
     print(index);
-    downloadedInfo[0] = temp;
+    downloadedInfo[index] = temp;
+    writeDownloadList();
   }
 }

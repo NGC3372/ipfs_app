@@ -63,4 +63,20 @@ class DataUtil {
             primarySwatch: Colors.red,
           ));
   }
+
+  static String formatFileSize(int sizeInt) {
+    double size = sizeInt.toDouble();
+    if (size > 0 && size < 999) {
+      return '${size.toString()}b';
+    } else if (size > 999 && size < 999999) {
+      String temp = (size / 1000).toString();
+      return '${temp.substring(0, temp.indexOf('.') + 2)}Kb';
+    } else if (size > 999999 && size < 999999999) {
+      String temp = (size / 1000000).toString();
+      return '${temp.substring(0, temp.indexOf('.') + 2)}Mb';
+    } else if (size > 999999999) {
+      String temp = (size / 1000000000).toString();
+      return '${temp.substring(0, temp.indexOf('.') + 2)}Gb';
+    }
+  }
 }
