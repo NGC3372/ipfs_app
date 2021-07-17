@@ -31,164 +31,171 @@ class ChangeFileInfoPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Row(
+          Expanded(
+              child: ListView(
             children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'Hash',
-                  style: textStyleTtile,
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    dataBean.hash,
-                    style: textStyleContent,
-                  ),
-                ),
-              )
-            ],
-          ),
-          Divider(),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'changeFileInfoPage_date'.tr,
-                  style: textStyleTtile,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  dataBean.date,
-                  style: textStyleContent,
-                ),
-              ),
-            ],
-          ),
-          Divider(),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'changeFileInfoPage_fileSize'.tr,
-                  style: textStyleTtile,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  DataUtil.formatFileSize(dataBean.fileSize),
-                  style: textStyleContent,
-                ),
-              ),
-            ],
-          ),
-          Divider(),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'changeFileInfoPage_fileName'.tr,
-                  style: textStyleTtile,
-                ),
-              ),
-              Expanded(
-                  child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: TextField(
-                  controller: controller,
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                    icon: Icon(Icons.clear),
-                    onPressed: () {
-                      controller.clear();
-                    },
-                  )),
-                ),
-              )),
-              Obx(
-                () => Visibility(
-                  visible: filenameContent.value,
-                  child: Padding(
+              Row(
+                children: [
+                  Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'changeFileInfoPage_ContentNull'.tr,
-                      style: TextStyle(color: Colors.red),
+                      'Hash',
+                      style: textStyleTtile,
                     ),
                   ),
-                ),
-              )
-            ],
-          ),
-          Divider(),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'downloadInfoPage_fileType'.tr,
-                  style: textStyleTtile,
-                ),
-              ),
-              Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Obx(
-                    () => DropdownButton(
-                      hint: Text('changeFileInfoPage_fileType_hint'.tr),
-                      value: selectValue.value,
-                      items: [
-                        DropdownMenuItem(
-                          child:
-                              Text('changeFileInfoPage_fileType_text/html'.tr),
-                          value: 'text/html',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('changeFileInfoPage_fileType_media'.tr),
-                          value: 'media',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('changeFileInfoPage_fileType_picture'.tr),
-                          value: 'picture',
-                        ),
-                      ],
-                      onChanged: (value) {
-                        selectValue.value = value;
-                        print(value);
-                      },
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        dataBean.hash,
+                        style: textStyleContent,
+                      ),
                     ),
-                  )),
-              Obx(
-                () => Visibility(
-                  visible: fileTypeContent.value,
-                  child: Padding(
+                  )
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'changeFileInfoPage_ContentNull'.tr,
-                      style: TextStyle(color: Colors.red),
+                      'changeFileInfoPage_date'.tr,
+                      style: textStyleTtile,
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      dataBean.date,
+                      style: textStyleContent,
+                    ),
+                  ),
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'changeFileInfoPage_fileSize'.tr,
+                      style: textStyleTtile,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      DataUtil.formatFileSize(dataBean.fileSize),
+                      style: textStyleContent,
+                    ),
+                  ),
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'changeFileInfoPage_fileName'.tr,
+                      style: textStyleTtile,
+                    ),
+                  ),
+                  Expanded(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: TextField(
+                      controller: controller,
+                      decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                        icon: Icon(Icons.clear),
+                        onPressed: () {
+                          controller.clear();
+                        },
+                      )),
+                    ),
+                  )),
+                  Obx(
+                    () => Visibility(
+                      visible: filenameContent.value,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          'changeFileInfoPage_ContentNull'.tr,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'downloadInfoPage_fileType'.tr,
+                      style: textStyleTtile,
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Obx(
+                        () => DropdownButton(
+                          hint: Text('changeFileInfoPage_fileType_hint'.tr),
+                          value: selectValue.value,
+                          items: [
+                            DropdownMenuItem(
+                              child: Text(
+                                  'changeFileInfoPage_fileType_text/html'.tr),
+                              value: 'text/html',
+                            ),
+                            DropdownMenuItem(
+                              child:
+                                  Text('changeFileInfoPage_fileType_media'.tr),
+                              value: 'media',
+                            ),
+                            DropdownMenuItem(
+                              child: Text(
+                                  'changeFileInfoPage_fileType_picture'.tr),
+                              value: 'picture',
+                            ),
+                          ],
+                          onChanged: (value) {
+                            selectValue.value = value;
+                            print(value);
+                          },
+                        ),
+                      )),
+                  Obx(
+                    () => Visibility(
+                      visible: fileTypeContent.value,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          'changeFileInfoPage_ContentNull'.tr,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Divider(),
+              Container(
+                height: 80,
+                alignment: Alignment.center,
+                child: MyTextButton(
+                  tap: () {
+                    submit();
+                  },
+                  text: 'changeFileInfoPage_Button'.tr,
                 ),
-              )
+              ),
             ],
-          ),
-          Divider(),
-          Container(
-            height: 80,
-            alignment: Alignment.center,
-            child: MyTextButton(
-              tap: () {
-                submit();
-              },
-              text: 'changeFileInfoPage_Button'.tr,
-            ),
-          ),
+          ))
         ],
       ),
     );
