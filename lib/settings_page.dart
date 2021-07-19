@@ -84,10 +84,7 @@ class SettingsPage extends StatelessWidget {
       Get.changeTheme(ThemeData.dark());
     else
       Get.changeTheme(
-        ThemeData(
-          primarySwatch: Colors.red,
-        ),
-      );
+          ThemeData(primaryColor: Color.fromRGBO(28, 122, 124, 1.0)));
     DataUtil.preferences.setBool("AppDarkMode", select.value);
   }
 }

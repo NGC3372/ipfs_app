@@ -18,6 +18,7 @@ class MyHttp {
     } on DioError catch (e) {
       print('error!!!!!!!');
       print(e.response);
+      print(e.message);
       return null;
     }
   }

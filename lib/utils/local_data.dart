@@ -40,7 +40,7 @@ class DataUtil {
   static void initAppSetting() {
     String requestURI = DataUtil.preferences.getString("RequestURI");
     if (requestURI == null) {
-      DataUtil.preferences.setString('RequestURI', 'https://www.guohao.icu');
+      DataUtil.preferences.setString('RequestURI', 'https://ipfs.io');
     }
     String language = DataUtil.preferences.getString("AppLanguage");
     if (language == null) {
@@ -59,9 +59,8 @@ class DataUtil {
 
     DataUtil.preferences.getBool('AppDarkMode')
         ? Get.changeTheme(ThemeData.dark())
-        : Get.changeTheme(ThemeData(
-            primarySwatch: Colors.red,
-          ));
+        : Get.changeTheme(
+            ThemeData(primaryColor: Color.fromRGBO(28, 122, 124, 1.0)));
   }
 
   static String formatFileSize(int sizeInt) {

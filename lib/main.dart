@@ -16,6 +16,7 @@ void main() {
   runApp(GetMaterialApp(
     translations: MyLanguage(),
     locale: ui.window.locale,
+    theme: ThemeData(primaryColor: Color.fromRGBO(28, 122, 124, 1.0)),
     themeMode: Get.isPlatformDarkMode ? ThemeMode.light : ThemeMode.dark,
     fallbackLocale: Locale('en', 'US'),
     initialRoute: 'home',

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ipfs_app">
    <application
-        android:label="ipfs_app"
+        android:label="ipfs client"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
         <activity
