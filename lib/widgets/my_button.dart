@@ -12,7 +12,8 @@ class MyTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-          color: Get.isDarkMode ? Colors.black : Colors.red,
+          color:
+              Get.isDarkMode ? Colors.black : Color.fromRGBO(28, 122, 124, 1.0),
           borderRadius: BorderRadius.circular(3.0),
           boxShadow: [
             BoxShadow(

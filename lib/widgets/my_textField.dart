@@ -7,7 +7,9 @@ class MyTextFeild extends StatelessWidget {
   final TextEditingController controller = TextEditingController();
   String hintText;
 
-  MyTextFeild({this.hintText});
+  MyTextFeild({this.hintText, String content}) {
+    controller.text = content ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {

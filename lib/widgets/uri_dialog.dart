@@ -8,6 +8,7 @@ import 'my_button.dart';
 class UriDialog extends StatelessWidget {
   final MyTextFeild textFeild = MyTextFeild(
     hintText: 'uri',
+    content: DataUtil.preferences.getString('RequestURI'),
   );
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class UriDialog extends StatelessWidget {
                 style: TextStyle(color: Colors.grey),
               ),
               onTap: () {
-                textFeild.textValue = 'https://www.guohao.icu';
+                textFeild.textValue = 'https://ipfs.io';
               },
             )),
         SizedBox(
