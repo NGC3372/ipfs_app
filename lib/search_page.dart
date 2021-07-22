@@ -38,6 +38,7 @@ class SearchPage extends StatelessWidget {
             IconButton(
               onPressed: () {
                 searchController.text = '';
+                searchedList.value = [];
               },
               icon: Icon(Icons.clear),
               color: Get.isDarkMode ? Colors.white : Colors.black,

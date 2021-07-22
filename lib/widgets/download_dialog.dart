@@ -74,7 +74,7 @@ class MyDownloadDialog extends StatelessWidget {
       String hash = response.data['Hash'];
       int fileSize = response.data['CumulativeSize'];
       DateTime date = new DateTime.now();
-      Get.offNamed('downloadInfoPage', arguments: {
+      Get.offNamed('/downloadInfoPage', arguments: {
         "hash": hash,
         "fileSize": fileSize,
         "date": date.toString().split('.')[0]

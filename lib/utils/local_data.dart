@@ -63,7 +63,6 @@ class DataUtil {
             ThemeData(primaryColor: Color.fromRGBO(28, 122, 124, 1.0)));
   }
 
-  // ignore: missing_return
   static String formatFileSize(int sizeInt) {
     double size = sizeInt.toDouble();
     if (size > 0 && size < 999) {

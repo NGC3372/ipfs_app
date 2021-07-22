@@ -93,13 +93,13 @@ class MyListTitle extends StatelessWidget {
         };
         switch (dataBean.type) {
           case 'text/html':
-            Get.toNamed('textPage', arguments: args);
+            Get.toNamed('/textPage', arguments: args);
             break;
           case 'media':
-            Get.toNamed('mediaPage', arguments: args);
+            Get.toNamed('/mediaPage', arguments: args);
             break;
           case 'picture':
-            Get.toNamed('picturePage', arguments: args);
+            Get.toNamed('/picturePage', arguments: args);
             break;
         }
       },
@@ -118,7 +118,7 @@ class MyListTitle extends StatelessWidget {
             style: TextStyle(fontSize: 15),
           ),
           onPressed: () {
-            Get.offNamed('changeFileInfoPage', arguments: {'index': index});
+            Get.offNamed('/changeFileInfoPage', arguments: {'index': index});
           },
         ),
         Divider(),

@@ -15,14 +15,14 @@ class HomePage extends GetView<ControlHome> {
         title: Text("home_title".tr),
         leading: IconButton(
           onPressed: () {
-            Get.toNamed("settingsPage");
+            Get.toNamed("/settingsPage");
           },
           icon: Icon(Icons.settings),
         ),
         actions: [
           IconButton(
               onPressed: () {
-                Get.toNamed('searchPage');
+                Get.toNamed('/searchPage');
               },
               icon: Icon(Icons.search)),
         ],
