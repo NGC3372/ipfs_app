@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:ui' as ui;
+import 'home_page.dart';
 import 'package:ipfs_app/change_file_info_page.dart';
 import 'package:ipfs_app/controllers/home_contro.dart';
 import 'package:ipfs_app/download_info_page.dart';
@@ -9,8 +11,6 @@ import 'package:ipfs_app/search_page.dart';
 import 'package:ipfs_app/text_page.dart';
 import 'package:ipfs_app/utils/language.dart';
 import 'package:ipfs_app/media_page.dart';
-import 'dart:ui' as ui;
-import 'home_page.dart';
 
 void main() {
   runApp(GetMaterialApp(

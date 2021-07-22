@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:chewie/chewie.dart';
 import 'package:get/get.dart';
-import 'package:ipfs_app/utils/local_data.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 

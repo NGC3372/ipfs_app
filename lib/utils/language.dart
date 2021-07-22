@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class MyLanguage extends Translations {
@@ -50,9 +49,9 @@ class MyLanguage extends Translations {
         'en_US': {
           'home_title': 'Download List',
           'downloadDialog_Title': 'Search File',
-          'downloadDialog_Hint': 'please input the hash',
-          'downloadDialog_Button': 'search',
-          'downloadDialog_failure': 'ops! searching is failed',
+          'downloadDialog_Hint': 'Please input the hash',
+          'downloadDialog_Button': 'Search',
+          'downloadDialog_failure': 'Ops! searching is failed',
           'settingPage_title': "Settings",
           'settingPage_requestURI': "Request Address",
           'settingPage_language': "Language",
@@ -74,7 +73,7 @@ class MyLanguage extends Translations {
           'downloadInfoPage_Button': "Download",
           'downloadInfoPage_ContentNull': "Should not be empty",
           'changeFileInfoPage_Title': "Change File Information",
-          'changeFileInfoPage_Button': "change",
+          'changeFileInfoPage_Button': "Change",
           'changeFileInfoPage_date': "Date",
           'changeFileInfoPage_fileSize': "File Size",
           'changeFileInfoPage_fileName': "File Name",
